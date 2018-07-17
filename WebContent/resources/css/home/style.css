@@ -1,0 +1,19 @@
+
+	table,tr,td{
+		border:1px solid brown;
+		border-collapse: collapse;
+		}
+		tr{text-align:center;}
+		.witdh-full{width:80%}
+		.height-100{height:100px}
+		.height-300{height:300px}
+		.margin-auto{margin:0 auto}
+		.color-bg{background-color:#ccccff}
+		.color-lg{background-color:#ffe6ff}
+		.align-center{text-align: center}
+
+#user-login-layout {width: 250px; margin: 200px auto}
+#user-login-form {width: 250px ;margin: 200px auto}
+#join-form {width: 250px ;margin: 200px auto}
+#admin-login-layout{width:250px; margin:200px auto}
+		
