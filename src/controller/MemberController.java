@@ -5,7 +5,10 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
+import command.Carrier;
+import command.Sentry;
 import domain.*;
+import enums.Action;
 import service.*;
 // 상수는 좋지 않음. 메모리 잡아먹기때문에
 // 상수를 바꿔라
@@ -32,74 +35,89 @@ public class MemberController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MemberController ENTER !!");
-		String action = request.getParameter("action");
-		String page = request.getParameter("page");
+		Sentry.init(request);  //step1.센트리가 command 생성하고 대장한테 보고. 대장한테 moveCommand받아옴.
+		System.out.println("액션 : "+Sentry.cmd.getAction());
 		MemberBean member = null;
-		switch (action) {
-		case "move":
-			System.out.println("--controller 이동할 페이지 : "+page);
-			request.getRequestDispatcher("/WEB-INF/view/member/"+page+".jsp").forward(request, response);
+		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
+		// 스위치 내에 명령 값이 숨겨져있다.
+		//Action.valueOf() 에 Sentry.cmd.getAction().toUpperCase() 넣음
+		
+		case MOVE:
+			try {
+			System.out.println("--controller 무브 안으로 진입");
+			Carrier.send(request, response);
+			//switch 통과후 step2. 캐리어가 view 나타냄
+			}catch (Exception e) {e.printStackTrace();}
+			
 			break;
-		case "join":
+		case JOIN:
 			member = new  MemberBean();
 			member.setName(request.getParameter("new-user-name"));
 			member.setUserid(request.getParameter("new-user-id"));
 			member.setSsn(request.getParameter("new-user-birth"));
 			member.setPassword(request.getParameter("new-user-password"));
-			MemberServiceImpl.getInstance().createMember(member);
+			//MemberServiceImpl.getInstance().createMember(member);
+			response.sendRedirect(request.getContextPath()+"/member.do?action=move&page=loginFrom");
+			//ContextPath는 도메인 www.naver.com : 프로젝트명
+			//servletPath는 도메인 뒤. "/member.do?action=move&page=loginFrom"
+			//합치면 url
+			
+			//send Re-direct 다시 보내준다. 서블릿이 서블릿으로 보내는 구조.
+			//리턴타입이 void여도 sendRedirect 안의 주소로 간다.
+			//
+			
 			System.out.println("**controller JOIN 결과 : "+member);
 			break;
-		case "memberlist":
-			MemberServiceImpl.getInstance().listMember();
+		case LIST:
+			//MemberServiceImpl.getInstance().listMember();
 			System.out.println("**controller 리스트  ");
 			break;
-		case "searchMemberByTeam":
+		case SEARCH:
 			String team = request.getParameter("search-team");
-			MemberServiceImpl.getInstance().searchTeamByName(team);
+			//MemberServiceImpl.getInstance().searchTeamByName(team);
 			System.out.println("**controller 팀원찾기 : "+team);
 			break;
-		case "searchMemberId":
+		case RETRIEVE:
 			member = new MemberBean();
 			member.setName(request.getParameter("search-id-name"));
 			member.setSsn(request.getParameter("search-id-birth"));
-			MemberServiceImpl.getInstance().findMemberId(member);
+			//MemberServiceImpl.getInstance().findMemberId(member);
 			System.out.println("**controller 아이디찾기 : "+member);
 			break;
-		case "memberCount":
-			MemberServiceImpl.getInstance().countMember();
+		case COUNT:
+			//MemberServiceImpl.getInstance().countMember();
 			System.out.println("**controller 카운트");
 			break;
-		case "memberUpdate":
+		case UPDATE:
 			member =new MemberBean();
 			member.setUserid(request.getParameter("update-check-id"));
 			member.setPassword(request.getParameter("update-old-password")+"/"+request.getParameter("update-new-password"));
-			MemberServiceImpl.getInstance().updateMember(member);
+			//MemberServiceImpl.getInstance().updateMember(member);
 			System.out.println("**controller 비번변경 : "+member);
 			break;
-		case "memberDelete":
+		case DELETE:
 			member=new MemberBean();
 			member.setUserid(request.getParameter("delete-id"));
 			member.setPassword(request.getParameter("delete-pw"));
-			MemberServiceImpl.getInstance().deleteMember(member);
+			//MemberServiceImpl.getInstance().deleteMember(member);
+			response.sendRedirect(request.getContextPath()+"/member.do?action=move&page=loginFrom");
 			System.out.println("**controller 회원탈퇴 : "+member);
 			break;
-		case "login":
+		case LOGIN:
 			member=new MemberBean();
 			member.setUserid(request.getParameter("user-id"));
 			member.setPassword(request.getParameter("user-password"));
-			MemberServiceImpl.getInstance().login(member);
+			//MemberServiceImpl.getInstance().login(member);
 			System.out.println("**controller 로그인 : "+member);
-// 성공인지 실패인지
 			break;
 		default:
 			break;
 		}
-		request.getRequestDispatcher("/WEB-INF/view/member/"+page+".jsp").forward(request, response);
 		
 /*		for (int i = 0; i < request.getServletPath().split(",").length; i++) {
 			String path = request.getServletPath().split(",")[i];
 			System.out.println("ServletPath :"+path);*/
-			/*switch (request.getServletPath()) {
+			/*switch (request.getServletPatㄴ()) {
 			case "/member/join_form.do":
 				request.getRequestDispatcher("/member/join_form.jsp").forward(request, response);
 				break;

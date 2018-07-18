@@ -1,9 +1,9 @@
 package enums;
 
 public enum Action {
-	MOVE,
+	MOVE, JOIN,
 	CREATE, LIST, SEARCH, RETRIEVE,
-	COUNT, UPDATE, DELETE, LOGIN,
+	COUNT, UPDATE, DELETE, LOGIN, 
 
 // search -  find some
 // retrieve - find one 의 의미

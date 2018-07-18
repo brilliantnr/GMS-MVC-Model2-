@@ -2,6 +2,8 @@ package command;
 
 public class Command implements Order{
 	//2
+	//인터페이스를 임플함
+	
 	protected String action, domain, page, view;
 
 	public String getAction() {
