@@ -44,8 +44,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberBean readMemberById(String id) {
-		return MemberDaoImpl.getInstance().selectMemberById(id);
+	public MemberBean findMemberId(MemberBean member) {
+		return MemberDaoImpl.getInstance().findMemberId(member);
 		
 	}
 

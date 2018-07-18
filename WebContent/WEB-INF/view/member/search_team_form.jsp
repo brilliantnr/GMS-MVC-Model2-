@@ -11,9 +11,9 @@
 </head>
 <body>
 	<form action="<%=ctx %>/member.do">
-		팀 이름 입력<input type="text" name="search-team"/><br />
+		팀 이름 입력	<input type="text" name="search-team"/><br />
 		<input type="submit" value="검색" />
-		<input type="hidden" name="action" value="move"/>
+		<input type="hidden" name="action" value="searchMemberByTeam"/>
 		<input type="hidden" name="page" value="search_team_result" />
 	</form>
 </body>

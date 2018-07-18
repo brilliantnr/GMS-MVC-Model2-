@@ -13,10 +13,10 @@
 	<div id="user-login-layout" >
 		<h1>사용자 로그인</h1>
 		<form id="user-login-form" action="<%=ctx %>/member.do">
-			<br> ID <br> <input type="text" name="user-id" /> <br>
-			PASSWORD <br> <input type="text" name="user-password" /> <br> <br>
+			아이디		<br> <input type="text" name="user-id" /> <br/>
+			비밀번호 	<br> <input type="text" name="user-password" /> <br/> <br/>
 			<input type="submit" value="전송" />
-			<input type="hidden" name="action" value="move"/>
+			<input type="hidden" name="action" value="login"/>
 			<input type="hidden" name="page" value="user_login_result" />
 		</form>
 	</div>

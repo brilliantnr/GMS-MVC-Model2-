@@ -160,7 +160,7 @@ public class MemberDaoImpl implements MemberDao{
 	
 	}
 	@Override
-	public MemberBean findId(String name, String ssn) {
+	public MemberBean findMemberId(MemberBean mem) {
 		MemberBean member = new MemberBean();
 		try {
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)

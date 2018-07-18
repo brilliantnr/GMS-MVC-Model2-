@@ -11,9 +11,10 @@
 </head>
 <body>
 	<form action="<%=ctx %>/member.do">
-		ID 입력<input type="text" name="search-id"/><br />
+		이름 입력	<input type="text" name="search-id-name"/><br />
+		생년월일 입력 <input type="text" name="search-id-birth" />
 		<input type="submit" value="ID 검색" />
-		<input type="hidden" name="action" value="move"/>
+		<input type="hidden" name="action" value="searchMemberId"/>
 		<input type="hidden" name="page" value="search_id_result" />
 	</form>
 </body>

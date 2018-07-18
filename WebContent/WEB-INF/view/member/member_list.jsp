@@ -14,7 +14,7 @@
 	.tbl tr td{border:1px solid black}
 	</style>
 </head>
-<body>
+<body><form action="<%=ctx %>/member.do">
 	<table class="tbl">
 	<tr>
 		<td>아이디</td>
@@ -22,9 +22,11 @@
 		<td>팀명</td>
 		<td>나이</td>
 		<td>직책</td>
+		
 	</tr>
 		
 </table>
+</form>
 </body>
 </html>
 
