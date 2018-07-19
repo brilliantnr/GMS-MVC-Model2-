@@ -2,7 +2,7 @@ package command;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class Sentry {  
+public class Receiver {  
 	//센트리는 명령 수행한다 
 	// 왜 static 으로 줬을까? 단 하나의 커맨드만 처리하는 것.
 	// servletPath ="/member.do"
@@ -14,8 +14,10 @@ public class Sentry {
 	public static void init(HttpServletRequest request) {
 		String servletPath = request.getServletPath();   
 		System.out.println("센트리 : "+servletPath.substring(1, servletPath.indexOf(".")));
-		cmd=Commander.order(servletPath.substring(1,servletPath.indexOf(".")),  //member 만 호출
+		cmd=Commander.order(request);
+		
+		/*cmd=Commander.order(servletPath.substring(1,servletPath.indexOf(".")),  //member 만 호출
 				request.getParameter("action"),
-				request.getParameter("page"));
+				request.getParameter("page"));*/
 	}
 }

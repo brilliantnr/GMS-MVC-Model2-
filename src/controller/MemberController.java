@@ -1,15 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.util.*;
+
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-import command.Carrier;
-import command.Sentry;
+import command.*;
 import domain.*;
-import enums.Action;
-import service.*;
+import enums.*;
 // 상수는 좋지 않음. 메모리 잡아먹기때문에
 // 상수를 바꿔라
 
@@ -35,80 +35,83 @@ public class MemberController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MemberController ENTER !!");
-		Sentry.init(request);  //step1.센트리가 command 생성하고 대장한테 보고. 대장한테 moveCommand받아옴.
-		System.out.println("액션 : "+Sentry.cmd.getAction());
-		MemberBean member = null;
-		switch (Action.valueOf(Sentry.cmd.getAction().toUpperCase())) {
+		Receiver.init(request);  //step1.센트리가 command 생성하고 대장한테 보고. 대장한테 moveCommand받아옴.
+		System.out.println("액션 : "+Receiver.cmd.getAction());
+		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		// 스위치 내에 명령 값이 숨겨져있다.
 		//Action.valueOf() 에 Sentry.cmd.getAction().toUpperCase() 넣음
 		
+		//Controller의 케이스는 'DAO interface 의 메소드' + "move"
 		case MOVE:
-			try {
 			System.out.println("--controller 무브 안으로 진입");
-			Carrier.send(request, response);
-			//switch 통과후 step2. 캐리어가 view 나타냄
-			}catch (Exception e) {e.printStackTrace();}
-			
+			Carrier.forward(request, response);
+		/*	try {
+			System.out.println("--controller 무브 안으로 진입");
+			Carrier.forward(request, response);     //switch 통과후 step2. 캐리어가 view 나타냄
+			}catch (Exception e) {e.printStackTrace();}*/
 			break;
 		case JOIN:
-			member = new  MemberBean();
+			System.out.println("-- controller JOIN--");
+			Carrier.redirect(request, response,"");
+			System.out.println("**controller JOIN 결과  ");
+			
+			/*1단계  
+			 * response.sendRedirect(request.getContextPath()+"/member.do?action=move&page=loginFrom");
+			2단계 
+			Carrier.redirect(request, response,"/member.do?action=move&page=loginFrom");
+			response.sendRedirect(request.getContextPath()+url);
+			*/
+			
+			/*controller는 깨끗하게!
+			 * 빈에 담는건 createCommand 로 보냄
+			MemberBean member = new MemberBean();
 			member.setName(request.getParameter("new-user-name"));
 			member.setUserid(request.getParameter("new-user-id"));
-			member.setSsn(request.getParameter("new-user-birth"));
 			member.setPassword(request.getParameter("new-user-password"));
-			//MemberServiceImpl.getInstance().createMember(member);
-			response.sendRedirect(request.getContextPath()+"/member.do?action=move&page=loginFrom");
-			//ContextPath는 도메인 www.naver.com : 프로젝트명
-			//servletPath는 도메인 뒤. "/member.do?action=move&page=loginFrom"
-			//합치면 url
-			
+			member.setSsn(request.getParameter("new-user-birth"));
+			MemberServiceImpl.getInstance().createMember(member);
+			*/
+			/*
+			ContextPath는 도메인 www.naver.com : 프로젝트명
+			servletPath는 도메인 뒤. "/member.do?action=move&page=loginFrom"
+			합치면 url
+			 */			
 			//send Re-direct 다시 보내준다. 서블릿이 서블릿으로 보내는 구조.
 			//리턴타입이 void여도 sendRedirect 안의 주소로 간다.
-			//
-			
-			System.out.println("**controller JOIN 결과 : "+member);
+			//response 서블릿영역에서 활동, request 는 스크립틀에서 활동.
+
 			break;
 		case LIST:
-			//MemberServiceImpl.getInstance().listMember();
 			System.out.println("**controller 리스트  ");
+			Carrier.redirect(request, response, "member.do?action=move&page=member_list");
 			break;
 		case SEARCH:
-			String team = request.getParameter("search-team");
-			//MemberServiceImpl.getInstance().searchTeamByName(team);
-			System.out.println("**controller 팀원찾기 : "+team);
+			//List<MemberBean> members =  ((SearchCommand) Receiver.cmd).getMembers();   //왜 getMembers는 자동완성 안뜨나?
+			//Receiver.cmd 가 case SEARCH 내에 있으면 SearchCommand를 말한다.
+			Carrier.redirect(request, response, "/member.do?action=move&page=search_team_result");
+			System.out.println("**controller 팀원찾기 : ");  
 			break;
 		case RETRIEVE:
-			member = new MemberBean();
-			member.setName(request.getParameter("search-id-name"));
-			member.setSsn(request.getParameter("search-id-birth"));
-			//MemberServiceImpl.getInstance().findMemberId(member);
-			System.out.println("**controller 아이디찾기 : "+member);
+			Carrier.redirect(request, response,"/member.do?action=move&page=search_id_result");
+			System.out.println("**controller 아이디찾기 : ");
 			break;
 		case COUNT:
-			//MemberServiceImpl.getInstance().countMember();
+			
 			System.out.println("**controller 카운트");
 			break;
 		case UPDATE:
-			member =new MemberBean();
-			member.setUserid(request.getParameter("update-check-id"));
-			member.setPassword(request.getParameter("update-old-password")+"/"+request.getParameter("update-new-password"));
-			//MemberServiceImpl.getInstance().updateMember(member);
-			System.out.println("**controller 비번변경 : "+member);
+			Carrier.redirect(request, response, "");
+			System.out.println("**controller 비번변경 : ");
+			
 			break;
 		case DELETE:
-			member=new MemberBean();
-			member.setUserid(request.getParameter("delete-id"));
-			member.setPassword(request.getParameter("delete-pw"));
-			//MemberServiceImpl.getInstance().deleteMember(member);
-			response.sendRedirect(request.getContextPath()+"/member.do?action=move&page=loginFrom");
-			System.out.println("**controller 회원탈퇴 : "+member);
+			Receiver.cmd.excute();
+			Carrier.redirect(request, response, "");
+			System.out.println("**controller 회원탈퇴 : ");
 			break;
 		case LOGIN:
-			member=new MemberBean();
-			member.setUserid(request.getParameter("user-id"));
-			member.setPassword(request.getParameter("user-password"));
-			//MemberServiceImpl.getInstance().login(member);
-			System.out.println("**controller 로그인 : "+member);
+			Carrier.redirect(request, response, "/member.do?action=move&page=mypage");
+			System.out.println("**controller 로그인 : ");
 			break;
 		default:
 			break;
@@ -117,7 +120,7 @@ public class MemberController extends HttpServlet {
 /*		for (int i = 0; i < request.getServletPath().split(",").length; i++) {
 			String path = request.getServletPath().split(",")[i];
 			System.out.println("ServletPath :"+path);*/
-			/*switch (request.getServletPatㄴ()) {
+			/*switch (request.getServletPath()) {
 			case "/member/join_form.do":
 				request.getRequestDispatcher("/member/join_form.jsp").forward(request, response);
 				break;

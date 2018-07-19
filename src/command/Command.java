@@ -1,10 +1,18 @@
 package command;
 
+import javax.servlet.http.*;
+
 public class Command implements Order{
-	//2
-	//인터페이스를 임플함
-	
+	protected HttpServletRequest request;
 	protected String action, domain, page, view;
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
 
 	public String getAction() {
 		return action;

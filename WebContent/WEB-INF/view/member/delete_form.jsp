@@ -8,6 +8,6 @@
 아이디 입력		<br /><input type="text" name="delete-id" /><br />
 비밀번호 입력		<br /><input type="text" name="delete-pw"/><br />
  <br /><input type="submit" value="회원탈퇴"/>
- <input type="hidden" name="action" value="memberDelete"/>
+ <input type="hidden" name="action" value="delete"/>
  <input type="hidden" name="page" value="delete_result"/>
 </form>
