@@ -20,7 +20,7 @@ public class SearchCommand extends Command {
 
 	@Override
 	public void excute() {
-		switch (Domain.valueOf(Receiver.cmd.domain.toUpperCase())) {
+		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
 			
 			

@@ -11,6 +11,6 @@ public interface MemberService {
 	public int countMember();
 	public void updateMember(MemberBean member);
 	public void deleteMember(MemberBean member);
-	public MemberBean login(MemberBean member); //boolean
+	public boolean login(MemberBean member);
 	public List<MemberBean> searchTeamByName(String teamName);
 }

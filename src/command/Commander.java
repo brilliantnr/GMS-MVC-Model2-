@@ -6,11 +6,11 @@ import enums.Action;
 
 public class Commander{
 	public static Command order(HttpServletRequest request) {
-		Command cmd = null;
+		Command cmd = null;   //cmd는 레퍼런스
 		switch (Action.valueOf(request.getParameter("action").toUpperCase())) {
 		case MOVE:
 			System.out.println("--Commander MOVE 진입--");
-			cmd = new MoveCommand(request);
+			cmd = new MoveCommand(request);  //cmd는 레퍼런스
 			break;
 		case JOIN:
 			System.out.println("--Commander JOIN 진입--");
@@ -44,7 +44,7 @@ public class Commander{
 			cmd =new LoginCommand(request);
 			break;
 		}
-		return cmd;
+		return cmd;  //cmd 죽음, 주소값은 남김
 	}
 
 	

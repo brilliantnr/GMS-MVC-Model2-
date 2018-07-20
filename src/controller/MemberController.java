@@ -21,7 +21,7 @@ import enums.*;
 	"/member/user_login_form.do","/member/user_login_result.do",
 	"/member/update_form.do","/member/update_result.do",
 	"/member/delete_form.do","/member/delete_result.do",
-	"/member/search_team_form.do","/member/search_team_result.do",
+	"/member/search_team_fo+rm.do","/member/search_team_result.do",
 	"/member/search_id_form.do","/member/search_id_result.do",
 	"/member/member_list.do",
 	"/member/admin_login.do"}) 
@@ -109,11 +109,17 @@ public class MemberController extends HttpServlet {
 			Carrier.redirect(request, response, "");
 			System.out.println("**controller 회원탈퇴 : ");
 			break;
-		case LOGIN:
-			Carrier.redirect(request, response, "/member.do?action=move&page=mypage");
-			System.out.println("**controller 로그인 : ");
+ 		case LOGIN:  //★
+			if(request.getAttribute("match").equals("TRUE")) {
+				Carrier.forward(request, response);
+				System.out.println("**controller 로그인 : ");
+			}else {
+				Carrier.redirect(request, response, "/member.do?action=move&page=login_form");				
+			}
+
 			break;
 		default:
+			Carrier.redirect(request, response, "");
 			break;
 		}
 		

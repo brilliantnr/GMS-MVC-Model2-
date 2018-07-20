@@ -17,7 +17,7 @@ public class RetrieveCommand extends Command {
 	}
 	@Override
 	public void excute() {
-		switch (Domain.valueOf(Receiver.cmd.domain.toUpperCase())) {
+		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
 			MemberBean member = new MemberBean();
 			member.setName(request.getParameter("search-id-name"));

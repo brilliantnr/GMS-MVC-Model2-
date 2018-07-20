@@ -12,10 +12,8 @@ public class MemberServiceImpl implements MemberService{
 	private MemberServiceImpl() {
 	}
 	@Override
-	public MemberBean login(MemberBean member) {
-		MemberBean mem = MemberDaoImpl.getInstance().login(member);
-		
-		return mem;
+	public boolean login(MemberBean member) {
+		return(MemberDaoImpl.getInstance().login(member)!=null);
 	}
 		/*public boolean login(MemberBean member) {
 		boolean flag = flase;
