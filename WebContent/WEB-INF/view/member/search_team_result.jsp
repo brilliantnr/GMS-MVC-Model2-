@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% 
-	String ctx = application.getContextPath();
-%>
 
 <!doctype html>
 <html lang="en">
@@ -14,7 +11,7 @@
 	.tbl tr td{border:1px solid black}
 	</style>
 </head>
-<body><form action="<%=ctx%>/index.jsp">
+<body><form action="${context}/index.jsp">
 	<table class="tbl">
 	<tr>
 		<td>아이디</td>

@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% 
-	String ctx = application.getContextPath();
-%>
 <!-- 
 userid, name, birth(800101-1),  password
 roll, teamId,; 
@@ -14,7 +11,7 @@ roll, teamId,;
 </head>
 <body>
 	<div id="join-form">
-		<form action="<%=ctx%>/member.do">
+		<form action="${context}/member.do" onsubmit="return sendForm()" method="get">
 			<h2>회원가입</h2>
 			ID 			<br><input type="text" name="new-user-id" /><br /> 
 			이름 		<br><input type="text" name="new-user-name" /><br />
@@ -25,6 +22,12 @@ roll, teamId,;
 			<input type="submit" value="회원가입 " />
 		</form>
 	</div>
+	<script>
+	function sendForm() {
+		alert('--sendForm 통과--');
+		return true;
+	}
+</script>
 </body>
 </html>
 

@@ -1,13 +1,12 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<c:set var="ctx" value="<%=application.getContextPath() %>"/>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <title>관리자 페이지 입니당 ★</title>
-<link rel="stylesheet" href="${ctx}/resources/css/home/style.css" />
+<link rel="stylesheet" href="${css}/style.css" />
 </head>
 <body>
 	<div id="wrapper">
@@ -24,3 +23,12 @@
 			<jsp:include page="../common/footerBox.jsp" />
 		</div>
 	</div>
+	<script>
+		function move(domain, action, page) {
+			console.log('클릭 테스트 성공 ${context}');
+			alert('클릭 테스트 성공');
+			location.href = "${context}/" + domain + ".do?action=" + action + "&page=" + page;
+		}
+	</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 	body {font-family: 'Malgun Gothic', 'Verdana';
 		background-color: #3366ff;
-		color: #fff;
+		color: #ffffff;
 		margin: 0;
 		padding: 0;
 	}
@@ -36,10 +36,10 @@
 		margin: 10px;
 		font-size: 1.1em;
 		display: block;
-		color: #3366ff;
+		color: #ffffff;
 	}	
 	div#login-box a:hover{
-		color: #3366ff;
+		color: #ff8000;
 		text-decoration: none;
 	}
 	div#login-box a:active{
@@ -47,7 +47,7 @@
 		text-decoration: none;
 	}
 	div#header h1{
-		color: #fff;
+		color: #ffffff;
 		padding:  5px 0;
 		margin: 0;
 		border: none;
@@ -58,6 +58,7 @@
 	div#content{
 		padding: 15px 30px 15px 30px;
 		background-color: #fff;
+		color: #400040;
 		margin-bottom: 30px;
 		min-height: 400px;
 	}		

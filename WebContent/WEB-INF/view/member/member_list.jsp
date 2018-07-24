@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="<%=application.getContextPath() %>"/>
-
+스크립틀릿 없애기 2번째 방법
+ --%>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
 	<title>리스트 페이지</title>
-	<link rel="stylesheet" href="${ctx}/resources/css/home/style.css" />
+	<link rel="stylesheet" href="${css}/style.css" />
 </head>
 <body>
 	<div id="wrapper">
