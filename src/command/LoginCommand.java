@@ -17,39 +17,17 @@ public class LoginCommand extends Command {
 	}
 	@Override
 	public void excute() {
-		switch (Domain.valueOf(domain.toUpperCase())) {
-		case MEMBER:
-			MemberBean member=new MemberBean();
-			member.setUserid(request.getParameter("user-id"));
-			member.setPassword(request.getParameter("user-password"));
-			MemberServiceImpl.getInstance().login(member);
-			break;
-		default:
-			break;
-		}
+		
 		super.excute();
-		
-		
-/*선생님 코드 (login타입 boolean 이다)
- * 		super.excute();
 		MemberBean member = new MemberBean();
 		member.setUserid(request.getParameter("user-id"));
 		member.setPassword(request.getParameter("user-password"));
 		if(MemberServiceImpl.getInstance().login(member)) {
 			request.setAttribute("match", "TRUE");
 			request.setAttribute("user", MemberServiceImpl.getInstance().findMemberId(member));
-			else {
+		}else {
 				request.setAttribute("match", "FALSE");
 			}
-		}
-		*/
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 }

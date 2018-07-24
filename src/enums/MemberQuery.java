@@ -35,8 +35,14 @@ public enum MemberQuery {
 		case FIND_ID:
 			query = " SELECT " + 
 					" MEM_ID USERID, " + 
+					" TEAM_ID TEAMID, " + 
+					" NAME, " + 
+					" AGE, " + 
+					" ROLL, " +
+					" PASSWORD PW ," + 
+					" SSN " + 
 					" FROM MEMBER " + 
-					" WHERE NAME LIKE '%s' AND SSN LIKE '%s'   ";
+					" WHERE MEM_ID LIKE '%s' ";
 			break;
 		case COUNT_MEMBER:
 			query = "  SELECT COUNT(*) AS count FROM MEMBER ";
@@ -78,18 +84,6 @@ public enum MemberQuery {
 					+ " NAME " + 
 					" FROM MEMBER " + 
 					" WHERE TEAM_ID LIKE '%s' ";
-			break;
-		case SEARCH_ID:
-			query = " SELECT " + 
-					" MEM_ID USERID, " + 
-					" TEAM_ID TEAMID, " + 
-					" NAME, " + 
-					" AGE, " + 
-					" ROLL, " +
-					" PASSWORD PW ," + 
-					" SSN " + 
-					" FROM MEMBER " + 
-					" WHERE MEM_ID LIKE '%s' ";
 			break;
 		}
 		return query;

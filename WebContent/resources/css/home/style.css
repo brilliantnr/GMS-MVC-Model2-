@@ -1,4 +1,121 @@
-
+	body {font-family: 'Malgun Gothic', 'Verdana';
+		background-color: #3366ff;
+		color: #fff;
+		margin: 0;
+		padding: 0;
+	}
+	h1,h2,h3,h4,h5,h6{
+		font-size: 1.5em;
+	}
+	h1{
+		font-size: 2em;
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+	
+	div#wrapper{
+		width: 90%;
+		padding-bottom: 0;
+		margin-bottom: 0;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	div#header{
+		position: relative;
+		margin-bottom: 0;
+		padding: 0;
+		color: #ff0000;
+	}
+	div#title{
+		float: left;
+		text-align: left;
+		display: block;
+	}	
+	div#login-box{
+		float: right;
+		margin: 10px;
+		font-size: 1.1em;
+		display: block;
+		color: #3366ff;
+	}	
+	div#login-box a:hover{
+		color: #3366ff;
+		text-decoration: none;
+	}
+	div#login-box a:active{
+		color:#ff00ff;
+		text-decoration: none;
+	}
+	div#header h1{
+		color: #fff;
+		padding:  5px 0;
+		margin: 0;
+		border: none;
+		line-height: 2em;
+		font-weight: bold;
+		font-size:32px;
+	}
+	div#content{
+		padding: 15px 30px 15px 30px;
+		background-color: #fff;
+		margin-bottom: 30px;
+		min-height: 400px;
+	}		
+	div#content-box{
+		clear: both;
+		/* clear: both; ->좌표 relative를 다시 static으로 변경하는 것 */
+		margin-top: 40px;
+	}
+	div#menu-box{
+		clear: both;
+		margin-top: 40px;
+	}
+	ul#menu{
+		text-align: right;
+		margin: 0;
+		border-bottom: 1px #ff00ff;
+		position: relative;
+		}
+	ul#menu li{
+		display: inline;
+		list-style: none;
+		background-color: #ffe6ff;
+	}
+	ul#menu li a{
+		padding: 10px 20px;
+		background-color:   #ffe6ff;
+		font-weight: bold;
+		text-decoration: none;
+		line-height:  2.8em;
+		color: black;
+	}
+	ul#menu li a:hover{
+		background-color: #b3ffe0;
+		text-decoration: none;
+	}
+	ul#menu li a:active{
+		background-color: #b3ffe0;
+		text-decoration: none;
+	}
+	div#footer{
+		clear: both;
+		color: #ffe6ff;
+		text-align: center;
+		margin: 0;
+		padding: 10px 0;
+		line-height:  normal;
+		font-size: 1.5em;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* 
 	table,tr,td{
 		border:1px solid brown;
 		border-collapse: collapse;
@@ -11,9 +128,9 @@
 		.color-bg{background-color:#ccccff}
 		.color-lg{background-color:#ffe6ff}
 		.align-center{text-align: center}
-
 #user-login-layout {width: 250px; margin: 200px auto}
 #user-login-form {width: 250px ;margin: 200px auto}
 #join-form {width: 250px ;margin: 200px auto}
 #admin-login-layout{width:250px; margin:200px auto}
 		
+ */

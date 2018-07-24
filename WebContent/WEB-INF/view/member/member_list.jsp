@@ -1,49 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import=java.util.*
-import=domain.*
- %>
-<% 
-	String ctx = application.getContextPath();
-%>
-<%
-List<MemberBean> lst = (List<MemberBean>)request.getAttribute("list");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="<%=application.getContextPath() %>"/>
 
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Document</title>
-	<style>
-	.tbl {border:1px solid black}
-	.tbl tr{border:1px solid black}
-	.tbl tr td{border:1px solid black}
-	</style>
+	<title>리스트 페이지</title>
+	<link rel="stylesheet" href="${ctx}/resources/css/home/style.css" />
 </head>
-<body><form action="<%=ctx %>/member.do">
-	<table class="tbl">
-	<tr>
-		<td>아이디</td>
-		<td>이름</td>
-		<td>팀명</td>
-		<td>나이</td>
-		<td>직책</td>
-		
-	</tr>
-		<%
-		for(MemberBean m : lst){
-		%><tr>
-		<td><%=m.getUserid()%></td>
-		<td><%=m.getName()%></td>
-		<td><%=m.getTeamId()%></td>
-		<td><%=m.getAge()%></td>
-		<td><%=m.getRoll()%></td>
-		</tr>
-		<%
-			}
-		%>
-</table>
-</form>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<div id="title-box">
+				<h1>GRADE MAMAGEMENT SYSTEM</h1>
+			</div>
+		<!-- header end -->
+		<div id="content">
+			<div id="content-box">
+				<h1>회원 리스트</h1>
+				
+			</div>
+		</div>
+		<!-- content end -->
+		<div id="footer">
+			<span class="first">© Kakao M Corp.All rights reserved.</span>
+		</div>
+
+	</div>
 </body>
 </html>
 

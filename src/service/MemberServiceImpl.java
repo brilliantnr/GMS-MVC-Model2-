@@ -13,7 +13,16 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public boolean login(MemberBean member) {
-		return(MemberDaoImpl.getInstance().login(member)!=null);
+		boolean flag = false;
+		MemberBean mem = MemberDaoImpl.getInstance().login(member);
+		System.out.println("서비스 로긴 : "+ mem);
+		if(mem != null) {
+			flag = true;
+		}else {
+			flag=false;
+		}
+		
+		return flag;
 	}
 		/*public boolean login(MemberBean member) {
 		boolean flag = flase;

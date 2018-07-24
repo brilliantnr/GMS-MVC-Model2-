@@ -29,13 +29,13 @@ import enums.*;
 	*/
 
 //입구를 통일하자
-@WebServlet("/member.do")
+@WebServlet({"/member.do","/admin.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MemberController ENTER !!");
-		Receiver.init(request);  //step1.센트리가 command 생성하고 대장한테 보고. 대장한테 moveCommand받아옴.
+		Receiver.init(request);  //step1.
 		System.out.println("액션 : "+Receiver.cmd.getAction());
 		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		// 스위치 내에 명령 값이 숨겨져있다.
@@ -46,7 +46,7 @@ public class MemberController extends HttpServlet {
 			System.out.println("--controller 무브 안으로 진입");
 			Carrier.forward(request, response);
 		/*	try {
-			System.out.println("--controller 무브 안으로 진입");
+			System.out.println("--controller 무브 안으로 진입");	
 			Carrier.forward(request, response);     //switch 통과후 step2. 캐리어가 view 나타냄
 			}catch (Exception e) {e.printStackTrace();}*/
 			break;
@@ -114,7 +114,7 @@ public class MemberController extends HttpServlet {
 				Carrier.forward(request, response);
 				System.out.println("**controller 로그인 : ");
 			}else {
-				Carrier.redirect(request, response, "/member.do?action=move&page=login_form");				
+				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");				
 			}
 
 			break;
@@ -174,8 +174,11 @@ public class MemberController extends HttpServlet {
 		}
 	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+/*	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+	이거 지우고 doget()을 service()로 변경
+	
+	*/
 
 }

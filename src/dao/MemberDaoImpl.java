@@ -29,6 +29,7 @@ public class MemberDaoImpl implements MemberDao{
 			.getConnection().createStatement().executeQuery(String.format(
 					MemberQuery.LOGIN.toString(),
 					bean.getUserid(), bean.getPassword()));    
+			System.out.println("dao 진입 while(rs.next) 전 ");
 
 			while(rs.next()) {
 				m=new MemberBean();
@@ -37,9 +38,12 @@ public class MemberDaoImpl implements MemberDao{
 				m.setName(rs.getString("NAME"));
 				m.setAge(rs.getString("AGE"));
 				m.setRoll(rs.getString("ROLL"));
-				m.setPassword("PW");
+				m.setPassword(rs.getString("PW"));
+				System.out.println("---DAO login---");
+				System.out.println(m);
 				}
 			} catch (Exception e) { e.printStackTrace();}
+		
 		return m;
 	}	
 
@@ -161,15 +165,29 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	@Override
 	public MemberBean findMemberId(MemberBean mem) {
-		MemberBean member = new MemberBean();
+		MemberBean m = null;
 		try {
-			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
+			ResultSet rs = DatabaseFactory.createDatabase(
+					Vendor.ORACLE,
+					DBConstant.USERNAME,
+					DBConstant.PASSWORD)
 			.getConnection().createStatement().executeQuery(String.format(
-					MemberQuery.FIND_ID.toString(), member.getName(),member.getSsn()));
-			
-		} catch (Exception e) {e.printStackTrace();}
-		
-		return member;
+					MemberQuery.FIND_ID.toString(),
+					mem.getUserid()));    
+
+			while(rs.next()) {
+				m=new MemberBean();
+				m.setUserid(rs.getString("USERID"));
+				m.setTeamId(rs.getString("TEAMID"));
+				m.setName(rs.getString("NAME"));
+				m.setAge(rs.getString("AGE"));
+				m.setRoll(rs.getString("ROLL"));
+				m.setPassword("PW");
+				System.out.println("---DAO login---");
+				System.out.println(m);
+				}
+			} catch (Exception e) { e.printStackTrace();}
+		return m;
 	}
 	@Override
 	public MemberBean selectMemberById(String id) {
