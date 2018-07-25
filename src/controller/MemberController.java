@@ -110,13 +110,14 @@ public class MemberController extends HttpServlet {
 			System.out.println("**controller 회원탈퇴 : ");
 			break;
  		case LOGIN:  //★
-			if(request.getAttribute("match").equals("TRUE")) {
+ 			System.out.println("=======로그인=======");
+			/*if(request.getAttribute("match").equals("TRUE")) {
 				Carrier.forward(request, response);
 				System.out.println("**controller 로그인 : ");
 			}else {
 				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");				
 			}
-
+*/
 			break;
 		default:
 			Carrier.redirect(request, response, "");
