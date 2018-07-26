@@ -18,14 +18,14 @@
 		alert(' form태그 클릭 내부 !! ');
 		var member = new Member();
 		var form = document.getElementById('user-login-form');  //각 element의 id로 찾는다는 것
-		form.action = "${context}/member.do";  //"${context} 는 JSP. js아니다
+		form.action = "${context}/member.do";  
 		form.method = "post";
 		var userid = form.user_id.value;
 		var password = form.user_password.value;
 		alert('입력한 id '+userid);
 		member.setUserid(userid);
 		member.setPassword(password);
-		if(member.loginvaliation()){
+		if(service.loginvaliation(member)){
 			form.submit();
 			}
 		//리턴타입이 불린이니까 if문 써야함

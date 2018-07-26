@@ -8,15 +8,25 @@
 //a태그에 이벤트(onclick)를 걸어서 이동하는 것은 객체지향에 어긋난다.
 	
 	document.getElementById('move_login_form').addEventListener('click',function(){
-		//콜백함수
+		//Array Literals
 		alert('로그인 클릭 이벤트 체크!!');
-		new Common().move('${context}','member','move','user_login_form');
+		router.move(['${context}','member','move','user_login_form']);
+		
+		
+		/* new Common().move(['${context}','member','move','user_login_form']); */
+		/* var x = ['${context}','member','move','user_login_form'];
+		alert('로그인 클릭 이벤트 체크!!');
+		new Common().move(x); */
+		
+		
+		/* //콜백함수
+		alert('로그인 클릭 이벤트 체크!!');
+		new Common().move('${context}','member','move','user_login_form'); */
 	});
 	
 	document.getElementById('move_join_form').addEventListener('click',function(){
-		//콜백함수
 		alert('조인 클릭 이벤트 체크!!');
-		new Common().move('${context}','member','move','join_form');
+		router.move(['${context}','member','move','join_form']);
 	});
 
 /* 	var move_login_form = document.getElementById('move_login_form');
