@@ -16,8 +16,9 @@
 	<script>
 	document.getElementById('login_form_btn').addEventListener('click',function(){
 		alert(' form태그 클릭 내부 !! ');
+		var member = new Member();
 		var form = document.getElementById('user-login-form');  //각 element의 id로 찾는다는 것
-		form.action = "${context}/member.do";
+		form.action = "${context}/member.do";  //"${context} 는 JSP. js아니다
 		form.method = "post";
 		var userid = form.user_id.value;
 		var password = form.user_password.value;
