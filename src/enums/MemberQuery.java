@@ -23,13 +23,17 @@ public enum MemberQuery {
 					"  WHERE MEM_ID LIKE '%s' AND PASSWORD LIKE '%s'   ";
 			break;
 		case INSERT_MEMBER:
-			query = "  INSERT INTO MEMBER(" + 
-					"  MEM_ID, " + 
-					"  NAME, " + 
-					"  SSN, " + 
-					"  PASSWORD " +
-					"  ) VALUES"+				
-					"  ('%s' ,'%s' ,'%s' ,'%s' ) ";
+			query =" INSERT INTO MEMBER(" + 
+					" MEM_ID, " + 
+					" NAME, " + 
+					" SSN, " + 
+					" PASSWORD, " + 
+					" TEAM_ID, " + 
+					" ROLL, " + 
+					" GENDER, " + 
+					" AGE   " + 
+					" ) VALUES " + 
+					" ('%s' ,'%s' ,'%s' ,'%s','%s','%s','%s','%s' ) ";
 			break;
 			
 		case FIND_ID:

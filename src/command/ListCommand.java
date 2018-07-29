@@ -19,7 +19,7 @@ public class ListCommand extends Command {
 	
 	@Override
 	public void excute() {
-		List<MemberBean> lst = new ArrayList<>();
+		//List<MemberBean> lst = new ArrayList<>();
 		request.setAttribute("list", MemberServiceImpl.getInstance().listMember());
 		System.out.println("----리스트커맨드 excute----");
 		MemberServiceImpl.getInstance().listMember();

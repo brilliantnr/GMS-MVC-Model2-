@@ -55,10 +55,18 @@ public class MemberDaoImpl implements MemberDao{
 					Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 			.getConnection().createStatement().executeUpdate(
 					String.format(MemberQuery.INSERT_MEMBER.toString(),
-							member.getUserid(),member.getName(),member.getSsn(),member.getPassword()));
+							member.getUserid(), member.getName(), member.getSsn(), member.getPassword(),
+							member.getTeamId(), member.getRoll(), member.getGender(), member.getAge()));
 			System.out.println("가입결과:"+rs);
 		} catch (Exception e) {e.printStackTrace();}
-		
+		/*" MEM_ID, " + 
+		" NAME, " + 
+		" SSN, " + 
+		" PASSWORD, " + 
+		" TEAM_ID, " + 
+		" ROLL, " + 
+		" GENDER, " + 
+		" AGE   " + */
 	}
 
 	@Override

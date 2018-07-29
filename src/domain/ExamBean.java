@@ -18,5 +18,6 @@ public class ExamBean {
 				+ ", \n 성적표SEQ=" + recordSeq 
 				+ "\n ---------------------";
 	}
-
+//처음시작하면 만들어 놓음
+	
 }

@@ -5,7 +5,7 @@
 <body>
 	<div id="user-login-layout">
 		<h1>사용자 로그인</h1>
-		<form id="user-login-form" >
+		<form id="user-login-form" > 
 			아이디		<br> <input id="user_id" type="text" name="user-id" /> <br/>
 			비밀번호 	<br> <input id="user_password" type="text" name="user-password" /> <br/> <br/>
 			<input id="login_form_btn" type="button" value="전송" /> 
@@ -14,26 +14,66 @@
 		</form>
 	</div>
 	<script>
-	document.getElementById('login_form_btn').addEventListener('click',function(){
-		alert(' form태그 클릭 내부 !! ');
-		var member = new Member();
-		var form = document.getElementById('user-login-form');  //각 element의 id로 찾는다는 것
-		form.action = "${context}/member.do";  
-		form.method = "post";
-		var userid = form.user_id.value;
-		var password = form.user_password.value;
-		alert('입력한 id '+userid);
-		member.setUserid(userid);
-		member.setPassword(password);
-		if(service.loginvaliation(member)){
-			form.submit();
-			}
-		//리턴타입이 불린이니까 if문 써야함
-	});
-	//이름사이의 - 를 마이너스로 입력해서 사용불가.
-	//id 줘서 대용
 	
-/* 	var userid = form.user_id.value;
+	
+	
+//5단계)JSON 사용(OOP)
+	document.getElementById('login_form_btn').addEventListener('click',function(){
+		var form = document.getElementById('user-login-form');
+		var x = service.nullChecker([ form.user_id.value, form.user_password.value ]);  
+		if(x.checker){
+			form.action = "${context}/member.do";  
+			form.method = "post";
+			form.submit();
+		}else {
+			alert(x.text);
+		}
+	});
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<script>
+//======================================================================================================
+/* 	
+기본개념
+	== : 자바에서의 값 비교
+	=== : .equals()
+ */
+	
+	
+	/* 
+(get 방식과 post 방식 비교)
+	<form id="user-login-form" action="" method=""> 
+	form.method = "get";
+	get 방식일때 http://localhost:9000/GMS-MVC/member.do?user-id=01&user-password=123&action=login&page=mypage
+	post 방식일때 http://localhost:9000/GMS-MVC/member.do
+	*/
+	
+	
+	/* document.getElementById('user-login-form').submit(); */
+	
+	/* 	
+(validation 따로 만들기 전)
+	var userid = form.user_id.value;
 	var password = form.user_password.value;
 	alert('입력한 id '+userid);
 	var ok=false;
@@ -46,19 +86,45 @@
 		form.submit();
 	};
 	return ok;  */
-
-	//== : 자바에서의 값 비교
-	//=== : .equals()
 	
-	/* document.getElementById('user-login-form').submit(); */
 	
-	/* <form id="user-login-form" action="" method=""> 
-	//form.method = "get";
-	//get 방식일때 http://localhost:9000/GMS-MVC/member.do?user-id=01&user-password=123&action=login&page=mypage
-	//post 방식일때 http://localhost:9000/GMS-MVC/member.do
-	*/
+	/* 	document.getElementById('login_form_btn').addEventListener('click',function(){
+		alert(' form태그 클릭 내부 !! ');
+		var member = new Member();
+		var form = document.getElementById('user-login-form');  //각 element의 id로 찾는다는 것
+		form.action = "${context}/member.do";  
+		form.method = "post";
+		var userid = form.user_id.value;  //이름사이의 - 를 마이너스로 입력해서 사용불가.id 줘서 대용
+		var password = form.user_password.value;
+		alert('입력한 id '+userid);
+		member.setUserid(userid);
+		member.setPassword(password);
+		if(service.loginvalidation(member)){  //리턴타입이 불린이니까 if문 써야함
+			form.submit();
+			}
+	});
+	 */
+	
+	 /* 
+2단계)IIFE 패턴 중 배열(Array) 이용
+	 document.getElementById('login_form_btn').addEventListener('click',function(){
+		alert(' form태그 클릭 내부 !! ');
+		var form = document.getElementById('user-login-form');  //각 element의 id로 찾는다는 것
+		form.action = "${context}/member.do";  
+		form.method = "post";
+		if(service.nullChecker([form.user_id.value,form.user_password.value])){  //배열 하나로 보낸다
+			form.submit();
+			}
+	});
+	 */
+	
+	
+	
+	
+	
 	
 	</script>
+	
 </body>
 </html>
 
