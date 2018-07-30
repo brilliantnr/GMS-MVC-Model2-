@@ -15,7 +15,7 @@ public class MemberServiceImpl implements MemberService{
 	public boolean login(MemberBean member) {
 		boolean flag = false;
 		MemberBean mem = MemberDaoImpl.getInstance().login(member);
-		System.out.println("서비스 로긴 : "+ mem);
+		System.out.println("----serviceImpl login : "+ mem);
 		if(mem != null) {
 			flag = true;
 		}else {

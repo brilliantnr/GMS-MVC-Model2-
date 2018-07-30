@@ -12,7 +12,8 @@ public class LoginCommand extends Command {
 		setRequest(request);  //커맨드리퀘스트가 담김
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
+		setPage("mypage");  //도착지 servlet이 결정하게. input에 hidden하지 않기 위해
+		/*setPage(request.getParameter("page"));*/
 		excute();
 	}
 	@Override
@@ -28,6 +29,5 @@ public class LoginCommand extends Command {
 		}else {
 				request.setAttribute("match", "FALSE");
 			}
-		
 	}
 }

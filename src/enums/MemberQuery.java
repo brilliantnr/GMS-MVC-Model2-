@@ -14,11 +14,13 @@ public enum MemberQuery {
 		case LOGIN:
 			query = " SELECT " + 
 					" MEM_ID USERID, " + 
-					" TEAM_ID TEAMID, " + 
 					" NAME, " + 
+					" PASSWORD PW, " + 
+					" SSN, " + 
 					" AGE, " + 
-					" ROLL, " +
-					" PASSWORD PW " + 
+					" TEAM_ID TEAMID, " + 
+					" GENDER, " +
+					" ROLL " +
 					" FROM MEMBER " + 
 					"  WHERE MEM_ID LIKE '%s' AND PASSWORD LIKE '%s'   ";
 			break;
@@ -42,6 +44,7 @@ public enum MemberQuery {
 					" TEAM_ID TEAMID, " + 
 					" NAME, " + 
 					" AGE, " + 
+					" GENDER, " + 
 					" ROLL, " +
 					" PASSWORD PW ," + 
 					" SSN " + 
@@ -52,9 +55,12 @@ public enum MemberQuery {
 			query = "  SELECT COUNT(*) AS count FROM MEMBER ";
 			break;
 		case UPDATE_PW:
-			query = " UPDATE MEMBER SET PASSWORD = '%s' " + 
-					" WHERE MEM_ID LIKE '%s'"
-					+ " AND PASSWORD LIKE '%s' ";
+			query = " UPDATE MEMBER " + 
+					" SET " + 
+					" PASSWORD = '%s', " + 
+					" TEAM_ID = '%s', " + 
+					" ROLL = '%s' " + 
+					" WHERE MEM_ID LIKE '%s' ";
 			break;	
 		case DELETE_MEMBER:
 			query = "  DELETE FROM MEMBER " + 
@@ -68,6 +74,7 @@ public enum MemberQuery {
 					" AGE, " + 
 					" ROLL, " +
 					" PASSWORD, " + 
+					" GENDER, " + 
 					" SSN " + 
 					" FROM MEMBER ";
 			break;
@@ -78,6 +85,7 @@ public enum MemberQuery {
 					" NAME, " + 
 					" AGE, " + 
 					" ROLL, " +
+					" GENDER, " +
 					" PASSWORD PW ," + 
 					" SSN " + 
 					" FROM MEMBER " + 

@@ -10,9 +10,9 @@ import enums.Term;
 @WebServlet("/common.do")
 public class CommonController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	enum Resources{  //★★★★
+	enum Resources{  //★★★★ 왜 여기다 저장했을까?
 		CONTEXT, CSS, JS, IMG
-	}
+	}  
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int i = 0;

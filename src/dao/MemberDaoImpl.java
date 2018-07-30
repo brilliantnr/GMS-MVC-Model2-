@@ -34,16 +34,18 @@ public class MemberDaoImpl implements MemberDao{
 			while(rs.next()) {
 				m=new MemberBean();
 				m.setUserid(rs.getString("USERID"));
-				m.setTeamId(rs.getString("TEAMID"));
 				m.setName(rs.getString("NAME"));
-				m.setAge(rs.getString("AGE"));
-				m.setRoll(rs.getString("ROLL"));
 				m.setPassword(rs.getString("PW"));
-				System.out.println("---DAO login---");
-				System.out.println(m);
+				m.setSsn(rs.getString("SSN"));
+				m.setAge(rs.getString("AGE"));
+				m.setGender(rs.getString("GENDER"));
+				m.setTeamId(rs.getString("TEAMID"));
+				m.setRoll(rs.getString("ROLL"));
+				System.out.println("m.getPassword:"+m.getPassword());
+				System.out.println("rs.getString:"+rs.getString("PW"));
+				System.out.println("---DAO login---\n : "+m);
 				}
 			} catch (Exception e) { e.printStackTrace();}
-		
 		return m;
 	}	
 
@@ -85,6 +87,7 @@ public class MemberDaoImpl implements MemberDao{
 				mem.setSsn(rs.getString("SSN"));
 				mem.setUserid(rs.getString("USERID"));
 				mem.setTeamId(rs.getString("TEAMID"));
+				mem.setGender(rs.getString("GENDER"));
 				lst.add(mem);
 			}
 			
@@ -108,6 +111,7 @@ public class MemberDaoImpl implements MemberDao{
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setPassword(rs.getString("PASSWORD"));
 				mem.setSsn(rs.getString("SSN"));
+				mem.setGender(rs.getString("GENDER"));
 				lst.add(mem);
 			}
 		} catch (Exception e) {e.printStackTrace();}
@@ -140,20 +144,32 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public void updateMember(MemberBean member) {
-		System.out.println("--DAOUpdateMember--");
+		System.out.println("--DAO Update Member--");
 		//비밀번호 바꾸는 것
 		try {
 			System.out.println("--쿼리실행--");
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 			.getConnection().createStatement().executeUpdate(String.format(
 					MemberQuery.UPDATE_PW.toString(),
-					member.getPassword().split("/")[1],
-					member.getUserid(),
-					member.getPassword().split("/")[0]));
+					member.getPassword(),
+					member.getTeamId(),
+					member.getRoll(),
+					member.getUserid()
+							)
+					);
 			System.out.println("--쿼리완료--");
 			System.out.println("dao 업데이트 :"+member);
 		} catch (Exception e) {e.printStackTrace();}
 	}
+	/*
+	" UPDATE MEMBER " + 
+					" SET " + 
+					" PASSWORD = '%s'," + 
+					" TEAM_ID = '%s'," + 
+					" ROLL = '%s' " + 
+					" WHERE MEM_ID LIKE '%s' ";
+					*/
+	
 
 	@Override
 	public void deleteMember(MemberBean member) {
@@ -189,10 +205,11 @@ public class MemberDaoImpl implements MemberDao{
 				m.setTeamId(rs.getString("TEAMID"));
 				m.setName(rs.getString("NAME"));
 				m.setAge(rs.getString("AGE"));
+				m.setGender(rs.getString("GENDER"));
+				m.setSsn(rs.getString("SSN"));
 				m.setRoll(rs.getString("ROLL"));
-				m.setPassword("PW");
-				System.out.println("---DAO login---");
-				System.out.println(m);
+				m.setPassword(rs.getString("PW"));
+				System.out.println("---DAO (findMemberId)---\n"+m);
 				}
 			} catch (Exception e) { e.printStackTrace();}
 		return m;

@@ -7,11 +7,21 @@
 
 <script>
 document.getElementById('move_login_form').addEventListener('click',function(){
-	router.move(['${context}','member','move','user_login_form']);
+	//JSON 이용 (OOP)
+	router.move({context: '${context}',
+		domain: 'member',
+		action:'move',
+		page:'user_login_form'});
+	
+	//배열
+	/* router.move(['${context}','member','move','user_login_form']); */
 });		
 	
 	document.getElementById('move_join_form').addEventListener('click',function(){
-		router.move(['${context}','member','move','join_form']);
+		router.move({context : '${context}',
+			domain:'member',
+			action:'move',
+			page:'join_form'});
 	});
 
 </script>

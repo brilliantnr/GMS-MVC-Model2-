@@ -1,12 +1,23 @@
-// router 	:클릭이동
+// router 	:단순 클릭이동
 // service 	:필수항목 입력
 // member 	:getter,setter/ 간단연산
 
+"use strict";  //문법엄격히
 var router = (()=> {
 	return {move : x =>{
 		console.log('클릭 테스트 성공 ${context}');
-		location.href = x[0] +"/" + x[1] + ".do?action=" + x[2]
-				+ "&page=" + x[3]
+		
+		//JSON 이용
+		location.href =
+			x.context +"/" 
+			+  x.domain 
+			+ ".do?action=" + x.action
+			+ "&page=" + x.page
+		
+		/*//배열
+		 * location.href =
+			x[0] +"/" + x[1] + ".do?action=" + x[2]
+				+ "&page=" + x[3]*/
 	}};
 })();
 

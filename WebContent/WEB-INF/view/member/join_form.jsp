@@ -13,18 +13,16 @@
 			이름 		<br><input type="text" name="name" /><br />
 			생년월일	 	<br><input type="text" name="ssn" /><br /> 
 			비밀번호	 	<br><input type="text" name="password" /><br /> 
-			<input type="hidden" name="action" value="join" /> 
-			<input type="hidden" name="page" value="join_result" /> 
-			<input type="hidden" name="gender" /> 
-			<input type="hidden" name="age" /> 
-			<input id="join_form_btn" type="button" value="회원가입 " />  
+
 			<br /> <br /> 
 		<h4>소속팀</h4>
-			<br><input type="radio" name="teamid" value="none" checked="checked" />	없음
-			<br><input type="radio" name="teamid" value="A" />	강놀자
-			<br><input type="radio" name="teamid" value="H" />	지은이네 
-			<br><input type="radio" name="teamid" value="S" />	왕거북이 
-			<br><input type="radio" name="teamid" value="C" />	코딩짱 
+		<select name="teamid" id="teamid">
+							<option value="A">놀자</option>
+							<option value="H">지은집</option>
+							<option value="S">터틀킹</option>
+							<option value="C">코딩짱</option>
+					</select>
+			
 		<h4>프로젝트 역할</h4><br /> 
 			<select name="roll" id="roll">
 			<option value="leader">	팀장			</option>
@@ -42,7 +40,14 @@
 		<input type="checkbox" name="subject" value="linux" /> Linux
 		<input type="checkbox" name="subject" value="html" /> HTML
 		<input type="checkbox" name="subject" value="spring" /> Spring
-			<br /> <br /> <br /> <br /> 
+	
+		<br /> <br />
+			<input type="hidden" name="action" value="join" /> 
+			<input type="hidden" name="page" value="mypage" /> 
+			<input type="hidden" name="gender" /> 
+			<input type="hidden" name="age" /> 
+			<input id="join_form_btn" type="button" value="회원가입 " />  
+			 <br /> <br /> 
 		</form>
 	</div>
 	<script>
@@ -89,6 +94,14 @@
 	
 	
 	<script>
+	/* <!-- <br><input type="radio" name="teamid" value="none" checked="checked" />	없음
+		<br><input type="radio" name="teamid" value="A" />	강놀자
+		<br><input type="radio" name="teamid" value="H" />	지은이네 
+		<br><input type="radio" name="teamid" value="S" />	왕거북이 
+		<br><input type="radio" name="teamid" value="C" />	코딩짱  --> */
+	
+	
+	
 	
 /*  배열로 담기 전 상태)
 document.getElementById('join_form_btn').addEventListener('click',function(){
