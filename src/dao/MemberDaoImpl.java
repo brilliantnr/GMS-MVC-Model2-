@@ -29,7 +29,8 @@ public class MemberDaoImpl implements MemberDao{
 			.getConnection().createStatement().executeQuery(String.format(
 					MemberQuery.LOGIN.toString(),
 					bean.getUserid(), bean.getPassword()));    
-			System.out.println("dao 진입 while(rs.next) 전 ");
+			System.out.println("쿼리 : "+MemberQuery.LOGIN.toString());
+			System.out.println("5. dao 진입/  while(rs.next) 전 ");
 
 			while(rs.next()) {
 				m=new MemberBean();
@@ -41,9 +42,9 @@ public class MemberDaoImpl implements MemberDao{
 				m.setGender(rs.getString("GENDER"));
 				m.setTeamId(rs.getString("TEAMID"));
 				m.setRoll(rs.getString("ROLL"));
-				System.out.println("m.getPassword:"+m.getPassword());
-				System.out.println("rs.getString:"+rs.getString("PW"));
-				System.out.println("---DAO login---\n : "+m);
+				System.out.println("5. DAO m.getPassword:"+m.getPassword());
+				System.out.println("5. DAO rs.getString:"+rs.getString("PW"));
+				System.out.println("5. DAO login---\n : "+m);
 				}
 			} catch (Exception e) { e.printStackTrace();}
 		return m;
@@ -52,6 +53,8 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void insertMember(MemberBean member) {
 		try {
+			System.out.println("gender : "+ member.getGender());
+			System.out.println("age : "+ member.getAge());
 			int rs=
 			DatabaseFactory.createDatabase(
 					Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
@@ -59,7 +62,7 @@ public class MemberDaoImpl implements MemberDao{
 					String.format(MemberQuery.INSERT_MEMBER.toString(),
 							member.getUserid(), member.getName(), member.getSsn(), member.getPassword(),
 							member.getTeamId(), member.getRoll(), member.getGender(), member.getAge()));
-			System.out.println("가입결과:"+rs);
+			System.out.println("5. Dao 가입결과:"+rs);
 		} catch (Exception e) {e.printStackTrace();}
 		/*" MEM_ID, " + 
 		" NAME, " + 
@@ -144,7 +147,7 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public void updateMember(MemberBean member) {
-		System.out.println("--DAO Update Member--");
+		System.out.println("5. DAO Update Member--");
 		//비밀번호 바꾸는 것
 		try {
 			System.out.println("--쿼리실행--");
@@ -158,7 +161,7 @@ public class MemberDaoImpl implements MemberDao{
 							)
 					);
 			System.out.println("--쿼리완료--");
-			System.out.println("dao 업데이트 :"+member);
+			System.out.println("5. dao 업데이트   :"+member);
 		} catch (Exception e) {e.printStackTrace();}
 	}
 	/*
@@ -173,9 +176,7 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public void deleteMember(MemberBean member) {
-		System.out.println("--DAODeleteMember--");
-		System.out.println(member.getUserid());
-		System.out.println(member.getPassword());
+		System.out.println("5. DAODeleteMember---"+member);
 		try {
 			System.out.println("--쿼리접속--");
 			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
@@ -183,8 +184,6 @@ public class MemberDaoImpl implements MemberDao{
 							MemberQuery.DELETE_MEMBER.toString(),member.getUserid()));
 			System.out.println("--쿼리완료--");
 		} catch (Exception e) {e.printStackTrace();}
-	
-
 	
 	}
 	@Override
@@ -209,7 +208,7 @@ public class MemberDaoImpl implements MemberDao{
 				m.setSsn(rs.getString("SSN"));
 				m.setRoll(rs.getString("ROLL"));
 				m.setPassword(rs.getString("PW"));
-				System.out.println("---DAO (findMemberId)---\n"+m);
+				System.out.println("5. DAO findMemberId---\n  : "+m);
 				}
 			} catch (Exception e) { e.printStackTrace();}
 		return m;
@@ -217,7 +216,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public MemberBean selectMemberById(String id) {
 		MemberBean member = new MemberBean();
-		System.out.println("--DAO search id--");
+		System.out.println("5. DAO search id--");
 		try {
 			System.out.println("--쿼리접속--");
 			ResultSet rs =

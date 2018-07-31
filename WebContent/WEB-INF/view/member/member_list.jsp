@@ -27,7 +27,7 @@
 		<div id="footer">
 			<span class="first">© Kakao M Corp.All rights reserved.</span>
 		</div>
-
+		</div>
 	</div>
 </body>
 </html>

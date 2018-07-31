@@ -44,14 +44,11 @@
 		<br /> <br />
 			<input type="hidden" name="action" value="join" /> 
 			<input type="hidden" name="page" value="mypage" /> 
-			<input type="hidden" name="gender" /> 
-			<input type="hidden" name="age" /> 
 			<input id="join_form_btn" type="button" value="회원가입 " />  
 			 <br /> <br /> 
 		</form>
 	</div>
 	<script>
-	
 //5단계)JSON 사용(OOP)
 	document.getElementById('join_form_btn').addEventListener('click',function(){
 		var form = document.getElementById('join_form_form');
@@ -60,8 +57,22 @@
 			form.action = "${context}/member.do";  
 			form.method = "post";
 			member.join([ form.userid.value, form.name.value, form.ssn.value, form.password.value ]);
-			form.gender.value = member.getGender();
-			form.age.value= member.getAge();
+				
+		//6단계)OOP loop
+ 		var arr = [
+ 			{'name':'action', 'value':'join'}, 
+			{'name':'page', 'value':'mypage'},
+			{'name':'gender', 'value': member.getGender()},
+			{'name':'age','value': member.getAge()}
+			];
+			for(var i in arr){
+				var node = document.createElement('input'); 
+				node.setAttribute('type','hidden');
+				node.setAttribute('name', arr[i].name);
+				node.setAttribute('value', arr[i].value);
+				form.appendChild(node);
+			}
+		
 			form.submit();
 		}else {			//j.checker가 false면 text('필수항목 입력바랍니다') 보여라
 			alert(x.text);
@@ -100,9 +111,6 @@
 		<br><input type="radio" name="teamid" value="S" />	왕거북이 
 		<br><input type="radio" name="teamid" value="C" />	코딩짱  --> */
 	
-	
-	
-	
 /*  배열로 담기 전 상태)
 document.getElementById('join_form_btn').addEventListener('click',function(){
 		alert('조인 폼 태그 클릭 내부!!');
@@ -124,8 +132,6 @@ document.getElementById('join_form_btn').addEventListener('click',function(){
 	}); 
 	*/
 	
-	
-	
 	/* 	document.getElementById('join_form_btn').addEventListener('click',function(){
 	alert('조인 폼 태그 클릭 내부!!');
 	var form = document.getElementById('join_form_form');
@@ -136,6 +142,37 @@ document.getElementById('join_form_btn').addEventListener('click',function(){
 	}
 });
  */
+ 
+ /* 
+ 6단계) 정적 코딩제거하기
+ 방법1) JSP의 <script>에서 function()내에서 작업
+ before)
+<input type="hidden" name="action" value="join" /> 
+<input type="hidden" name="page" value="mypage" /> 
+	form.gender.value = member.getGender();
+	form.age.value= member.getAge();
+	
+	//6단계)OOP loop
+		var arr = [{'name':'action', 'value':'join'}, 
+			{'name':'page', 'value':'mypage'},
+			{'name':'gender', 'value': member.getGender()},
+			{'name':'age','value': member.getAge()}];
+			for(var i in arr){
+				var node = document.createElement('input'); 
+				node.setAttribute('type','hidden');
+				node.setAttribute('name', arr[i].name);
+				node.setAttribute('value', arr[i].value);
+				alert(arr[i].name);
+				form.appendChild(node);
+			}	
+	
+ 
+ 
+ */
+ 
+ 
+ 
+ 
 	
 	
 	

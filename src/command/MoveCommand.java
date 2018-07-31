@@ -11,6 +11,8 @@ public class MoveCommand extends Command{
 		setAction(request.getParameter("action"));
 		setPage(request.getParameter("page"));
 		excute();
+		System.out.println("4. moveCommand action : "+request.getParameter("action"));
+		System.out.println("4. moveCommand page : "+request.getParameter("page"));
 	}
 
 }

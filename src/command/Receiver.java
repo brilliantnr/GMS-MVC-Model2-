@@ -13,7 +13,7 @@ public class Receiver {
 	public static Command cmd=new Command();
 	public static void init(HttpServletRequest request) {
 		String servletPath = request.getServletPath();   
-		System.out.println("센트리 : "+servletPath.substring(1, servletPath.indexOf(".")));
+		System.out.println("2. Reciver request.getServletPath() : "+servletPath.substring(1, servletPath.indexOf(".")));
 		cmd=Commander.order(request);  //commander에서 cmd가 죽으면서 남긴 주소값이 receiver의 static cmd 에게 넘어간다.
 		
 		//주소값을 받지 않은 상태가 되면 null pointer Exception 오류가 뜰 수 있다.

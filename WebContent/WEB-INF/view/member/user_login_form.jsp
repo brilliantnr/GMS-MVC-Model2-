@@ -10,7 +10,6 @@
 			비밀번호 	<br> <input id="user_password" type="text" name="user-password" /> <br/> <br/>
 			<input id="login_form_btn" type="button" value="전송" /> 
 			<input type="hidden" name="action" value="login"/>
-			<input type="hidden" name="page" value="mypage" />
 		</form>
 	</div>
 	<script>
@@ -117,9 +116,14 @@
 			}
 	});
 	 */
-	
-	
-	
+	/* 
+	 form 내에 hidden으로 설정해준 page를 감추기.
+	 ## user_login_form.jsp
+	 <input type="hidden" name="page" value="mypage" />
+	 
+	 ## LoginCommand.java
+	 setPage("mypage");
+	 */
 	
 	
 	

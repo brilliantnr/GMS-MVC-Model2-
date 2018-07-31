@@ -6,6 +6,7 @@
 <title>마이페이지 진입</title>
 </head>
 <body>
+	<div id="wrapper">
 	<table id="mypage">
 		<tr>
 			<th>${user.name}의회원정보</th>
@@ -45,12 +46,9 @@
 		</tr>
 	</table>
 
-
-	<h3>
 		<a id="mypage_to_update"> 수정하기 </a>
-	</h3>
-
-
+		<a id="mypage_to_delete"> 회원탈퇴하기 </a>
+</div>
 
 	<script>
 
@@ -67,6 +65,13 @@
 						page : 'update_form'
 					});
 				});
+		
+		document.getElementById('mypage_to_delete').addEventListener('click',function(){
+			router.move({context:'${context}',
+				domain:'member',
+				action:'move',
+				page:'delete_form'});
+		});
 	</script>
 
 </body>

@@ -12,6 +12,7 @@ public class CreateCommand extends Command{
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
 		setPage(request.getParameter("page"));
+		System.out.println("4. CreateCommand 액션, 페이지 : "+request.getParameter("action")+" / "+request.getParameter("page"));
 		this.excute();
 	}
 	
@@ -25,7 +26,7 @@ public class CreateCommand extends Command{
 		//만약 상속관계쓰면 안되는 상황이면 getDomain() 쓰면 된다.
 		
 		case MEMBER:
-			System.out.println("회원가입에 들어옴");
+			System.out.println("4. CreateCommand excute--");
 			MemberBean member = new MemberBean();
 			member.setName(request.getParameter("name"));
 			member.setUserid(request.getParameter("userid"));
@@ -37,7 +38,7 @@ public class CreateCommand extends Command{
 			member.setTeamId(request.getParameter("teamid"));
 			member.setSubject(request.getParameter("subject"));
 			MemberServiceImpl.getInstance().createMember(member);
-			System.out.println("---회원가입 성공 --");
+			System.out.println("4. CreateCommand excute-- \n :  "+member);
 			break;
 		default:
 			break;

@@ -20,55 +20,54 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("MemberController ENTER !!");
+		System.out.println("1. MemberController ENTER !!");
 		Receiver.init(request);  //step1.
-		System.out.println("---CONTROLLDER 액션 : "+Receiver.cmd.getAction());
+		System.out.println("5. Controller 액션 : "+Receiver.cmd.getAction());
 		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
 		case MOVE:
-			System.out.println("--controller 무브 안으로 진입");
+			System.out.println("5. con 무브 안으로 진입");
 			Carrier.forward(request, response);  //response 서블릿영역에서 활동, request 는 스크립틀릿에서 활동.
 			break;
 		case JOIN:
-			System.out.println("-- controller JOIN--");
+			System.out.println("5. con  JOIN--");
 			Carrier.redirect(request, response,"");
-			System.out.println("**controller JOIN 결과  END");
+			System.out.println("-------controller JOIN 결과  END-------");
 			break;
 		case LIST:
-			System.out.println("**controller 리스트  END");
+			System.out.println("-------controller 리스트  END-------");
 			Carrier.redirect(request, response, "member.do?action=move&page=member_list");
 			break;
 		case SEARCH:
 			//List<MemberBean> members =  ((SearchCommand) Receiver.cmd).getMembers();   //왜 getMembers는 자동완성 안뜨나?
 			//Receiver.cmd 가 case SEARCH 내에 있으면 SearchCommand를 말한다.
 			Carrier.redirect(request, response, "/member.do?action=move&page=search_team_result");
-			System.out.println("**controller 팀원찾기 END");  
+			System.out.println("-------controller 팀원찾기 END-------");  
 			break;
 		case RETRIEVE:
 			Carrier.redirect(request, response,"/member.do?action=move&page=search_id_result");
-			System.out.println("**controller 아이디찾기 END ");
+			System.out.println("-------controller 아이디찾기 END -------");
 			break;
 		case COUNT:
 			
-			System.out.println("**controller 카운트 END");
+			System.out.println("-------controller 카운트 END-------");
 			break;
 		case UPDATE:
 			Carrier.forward(request, response);
-			System.out.println("**controller 비번변경 END");
+			System.out.println("-------controller 비번변경 END-------");
 			
 			break;
 		case DELETE:
-			Receiver.cmd.excute();
 			Carrier.redirect(request, response, "");
-			System.out.println("**controller 회원탈퇴 END ");
+			System.out.println("-------controller 회원탈퇴 END------- ");
 			break;
  		case LOGIN:  //★
- 			System.out.println("=======controller) 로그인=======");
+ 			System.out.println("5. con 로그인 --");
 			if(request.getAttribute("match").equals("TRUE")) {
-				request.getSession().setAttribute("user", request.getAttribute("user"));  //커맨드에서 안하고 controller에서 session을 할까? 톰켓
+				//request.getSession().setAttribute("user", request.getAttribute("user"));  //커맨드에서 안하고 controller에서 session을 할까? 톰켓
 				Carrier.forward(request, response);
-				System.out.println("**controller 로그인 END ");
+				System.out.println("-------controller 로그인 END------- ");
 			}else {
-				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");				
+				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");
 			}
 
 			break;

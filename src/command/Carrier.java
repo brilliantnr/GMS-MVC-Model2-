@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 public class Carrier {
 	public static void forward(HttpServletRequest request, HttpServletResponse response)  {
 		try {
-			System.out.println("뷰 : "+Receiver.cmd.getView());
+			System.out.println("6. carrier forward 뷰 : "+Receiver.cmd.getView());
 			request.getRequestDispatcher(Receiver.cmd.getView()).forward(request, response);
 		} catch (Exception e) {e.printStackTrace();}
 		
@@ -18,6 +18,7 @@ public class Carrier {
 	public static void redirect(HttpServletRequest request,HttpServletResponse response,String url) {
 		try {
 			response.sendRedirect(request.getContextPath()+url);
+			System.out.println("carrier redirect :"+request.getContextPath()+url);
 			//response는 서블릿에서 서블릿으로 
 		} catch (Exception e) {e.printStackTrace();}
 	}
