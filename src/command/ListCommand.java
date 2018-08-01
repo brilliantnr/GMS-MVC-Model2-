@@ -19,10 +19,9 @@ public class ListCommand extends Command {
 	
 	@Override
 	public void excute() {
-		//List<MemberBean> lst = new ArrayList<>();
-		request.setAttribute("list", MemberServiceImpl.getInstance().listMember());
+//		List<MemberBean> list = MemberServiceImpl.getInstance().listMember();   // list에 service에서 받은 값을 담는다
+		request.setAttribute("list", MemberServiceImpl.getInstance().listMember());  //★★★★  ${}안에 list를 넣어서 호출할거다 
 		System.out.println("----리스트커맨드 excute----");
-		MemberServiceImpl.getInstance().listMember();
 		super.excute();
 	}
 }

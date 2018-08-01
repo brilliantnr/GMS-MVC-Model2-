@@ -15,7 +15,7 @@ import enums.*;
 //이미 id,password 등의 이름은  bean에 String으로 저장 되어 있다.
 //그런 상수들은 바꿀 필요가 없다.
 
-@WebServlet({"/member.do","/admin.do"})
+@WebServlet("/member.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,8 +34,8 @@ public class MemberController extends HttpServlet {
 			System.out.println("-------controller JOIN 결과  END-------");
 			break;
 		case LIST:
-			System.out.println("-------controller 리스트  END-------");
 			Carrier.redirect(request, response, "member.do?action=move&page=member_list");
+			System.out.println("-------controller 리스트  END-------");
 			break;
 		case SEARCH:
 			//List<MemberBean> members =  ((SearchCommand) Receiver.cmd).getMembers();   //왜 getMembers는 자동완성 안뜨나?

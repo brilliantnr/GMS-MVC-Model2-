@@ -1,5 +1,6 @@
 // router 	:단순 클릭이동
 // service 	:필수항목 입력
+// admin 	:관리자체크
 // member 	:getter,setter/ 간단연산
 
 "use strict";  //문법엄격히
@@ -39,7 +40,30 @@ var service = (()=>{
 		}
 	};
 })();
-//var 로 하면 독립적인 객체
+
+var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것으로 막음. 디폴트와 같은 기능
+	return {
+		check : x=>{
+			var isAdmin = confirm('관리자입니까?');  //confirm은 window의 객체, window가 객체를 만드는 것을 bom, confirm은 bom의 메소드
+			if(isAdmin){  //if 조건문 안에 연산없으면 불린타입으로 리턴하는 것
+				var password = prompt('관리자비번을 입력바랍니다');
+				if(password == 1){
+					router.move({
+						context:x,  //admin.check("${context}");에서 x값 받으니까 x로 써야해
+						domain:"admin",
+						action:"list",  //list를 디폴트로 둘거라서
+						page:"main"
+					});
+				}
+			}else{
+				//boolean( NO인 경우)
+				alert('관리자만 접근이 허용됩니다');
+			}
+		}
+};})();
+
+
+
 
 var member = (()=> {
 	var _userid, _ssn, _password, _name,

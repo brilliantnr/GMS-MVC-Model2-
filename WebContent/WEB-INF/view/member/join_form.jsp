@@ -8,7 +8,7 @@
 <body>
 	<div id="join-form">
 		<form id="join_form_form" name="joinForm">
-			<h2>회원가입</h2>
+		<h2>회원가입</h2>
 			ID 			<br><input type="text" name="userid" /><br /> 
 			이름 		<br><input type="text" name="name" /><br />
 			생년월일	 	<br><input type="text" name="ssn" /><br /> 
@@ -16,39 +16,37 @@
 
 			<br /> <br /> 
 		<h4>소속팀</h4>
-		<select name="teamid" id="teamid">
-							<option value="A">놀자</option>
-							<option value="H">지은집</option>
-							<option value="S">터틀킹</option>
-							<option value="C">코딩짱</option>
-					</select>
-			
+			<select name="teamid" id="teamid">
+				<option value="A">놀자</option>
+				<option value="H">지은집</option>
+				<option value="S">터틀킹</option>
+				<option value="C">코딩짱</option>
+			</select>
+
 		<h4>프로젝트 역할</h4><br /> 
 			<select name="roll" id="roll">
-			<option value="leader">	팀장			</option>
-			<option value="front">	프론트개발	</option>
-			<option value="back">	백단개발		</option>
-			<option value="android">안드로이드개발</option>
-			<option value="minfe">	민폐			</option>
+				<option value="leader">팀장</option>
+				<option value="front">프론트개발</option>
+				<option value="back">백단개발</option>
+				<option value="android">안드로이드개발</option>
+				<option value="minfe">민폐</option>
 			</select>
 		<h4>수강과목</h4><br /> 
-		<input type="checkbox" name="subject" value="java" checked="checked"/> Java
-		<input type="checkbox" name="subject" value="clang" /> C언어
-		<input type="checkbox" name="subject" value="JSP" /> JSP
-		<input type="checkbox" name="subject" value="PHP" /> PHP
-		<input type="checkbox" name="subject" value="nodejs" /> NodeJS
-		<input type="checkbox" name="subject" value="linux" /> Linux
-		<input type="checkbox" name="subject" value="html" /> HTML
-		<input type="checkbox" name="subject" value="spring" /> Spring
-	
-		<br /> <br />
-			<input type="hidden" name="action" value="join" /> 
-			<input type="hidden" name="page" value="mypage" /> 
+			<input type="checkbox" name="subject" value="java" checked="checked"/> Java
+			<input type="checkbox" name="subject" value="clang" /> C언어
+			<input type="checkbox" name="subject" value="JSP" /> JSP
+			<input type="checkbox" name="subject" value="PHP" /> PHP
+			<input type="checkbox" name="subject" value="nodejs" /> NodeJS
+			<input type="checkbox" name="subject" value="linux" /> Linux
+			<input type="checkbox" name="subject" value="html" /> HTML
+			<input type="checkbox" name="subject" value="spring" /> Spring
+			<br />
 			<input id="join_form_btn" type="button" value="회원가입 " />  
-			 <br /> <br /> 
+			<br /> 
 		</form>
 	</div>
 	<script>
+	
 //5단계)JSON 사용(OOP)
 	document.getElementById('join_form_btn').addEventListener('click',function(){
 		var form = document.getElementById('join_form_form');
@@ -58,7 +56,7 @@
 			form.method = "post";
 			member.join([ form.userid.value, form.name.value, form.ssn.value, form.password.value ]);
 				
-		//6단계)OOP loop
+		//6단계)OOP loop (input hidden 삭제)
  		var arr = [
  			{'name':'action', 'value':'join'}, 
 			{'name':'page', 'value':'mypage'},

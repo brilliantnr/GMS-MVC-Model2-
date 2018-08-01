@@ -7,8 +7,19 @@
 		<li><a href="${context}/index.jsp">ADMIN LOGOUT</a></li>
 	</ul>
 </div>
+<script>
 
 
-			<%-- <li><a href="${context}/member.do?action=move&page=member_list">LIST</a></li>
-				<li><a href="${context}/member.do?action=move&page=search_id_form">SEARCH ID</a></li>
-				<li><a href="${context}/index.jsp">ADMIN LOGOUT</a></li> --%>
+
+</script>
+
+			<%-- 
+			1)
+			<li><a href="${context}/member.do?action=move&page=member_list">LIST</a></li>
+			<li><a href="${context}/member.do?action=move&page=search_id_form">SEARCH ID</a></li>
+			<li><a href="${context}/index.jsp">ADMIN LOGOUT</a></li> 
+			2)
+			<li><a onclick="move('member','move','member_list')">LIST</a></li>
+			<li><a onclick="move('member','move','search_id_form')">SEARCHID</a></li>
+			<li><a href="${context}/index.jsp">ADMIN LOGOUT</a></li>
+			--%>

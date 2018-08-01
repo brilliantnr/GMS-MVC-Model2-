@@ -30,7 +30,7 @@
 			form.action = '${context}/member.do';
 			form.method = 'post';
 
-			//6단계) OOP개념(setter, getter 이용)
+		//6단계) OOP개념(setter, getter 이용)
 			var node = document.createElement('input');
 			node.setAttribute('type', 'hidden');
 			node.setAttribute('name', 'action');

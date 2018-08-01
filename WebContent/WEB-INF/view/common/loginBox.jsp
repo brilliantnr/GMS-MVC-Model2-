@@ -6,7 +6,7 @@
 </div>
 
 <script>
-document.getElementById('move_login_form').addEventListener('click',function(){
+document.getElementById('move_login_form').addEventListener('click',function(){   //클릭하면 실행
 	//JSON 이용 (OOP)
 	router.move({context: '${context}',
 		domain: 'member',
