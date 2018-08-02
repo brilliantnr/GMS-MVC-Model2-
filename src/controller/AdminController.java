@@ -16,7 +16,7 @@ public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("1. MemberController ENTER !!");
+		System.out.println("1. AdminController ENTER !!");
 		Receiver.init(request);  //step1.
 		System.out.println("5. adminController 액션 : "+Receiver.cmd.getAction());
 		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
@@ -32,6 +32,10 @@ public class AdminController extends HttpServlet {
 			System.out.println("5. adminController 관리자  RETRIEVE ");
 			Carrier.forward(request, response);
 			System.out.println("-------controller 아이디찾기 END -------");
+			break;
+		case SEARCH:
+			System.out.println("5. adminController 관리자  SEARCH ");
+			Carrier.forward(request, response);
 			break;
 		}
 	}

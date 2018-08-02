@@ -1,3 +1,32 @@
+/* 클래스함수로 쓸거야 */
+.cursor{cursor:pointer}
+
+.bgColorYellow{background-color: #ffff00}
+.bgColorLightGreen{background-color: #b3ffe0}
+
+.width80pt{width:80%}
+.width90pt{width:90%}
+.width100pt{width:100%}
+.width300px{width:300px}
+
+.center{margin:0, auto}	
+
+.marginTop30px{margin-top: 30px}
+.marginTop50px{margin-top: 50px}
+.marginLeft200px{margin-left: 200px}
+.marginRight200px{margin-right: 200px}
+.marginBot30px{margin-bottom:30px}
+.marginBot50px{margin-bottom:50px}
+
+.floatRight{float: right}
+
+.fontColorBlue{color:blue}
+.fontColorWhite{color:white}
+
+.textAlignRight{text-align: right}
+.textAlignCenter{text-align: center}	
+
+	
 	body {font-family: 'Malgun Gothic', 'Verdana';
 		background-color: #fae285;
 		color: #ffffff;
@@ -108,13 +137,31 @@
 		font-size: 1.5em;
 	}
 	
-	table{border:1px}
-	.gbColorisYellow{background-color: #ffff00}
+table{border:1px}
 
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/* 	css
+	class로 만든다
+	 */
 	
 	
 	/* 

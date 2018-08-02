@@ -1,14 +1,12 @@
 package controller;
 
 import java.io.IOException;
-import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
 import command.*;
-import domain.*;
 import enums.*;
 // 상수는 좋지 않음. 메모리 잡아먹기때문에 상수를 바꿔라
 

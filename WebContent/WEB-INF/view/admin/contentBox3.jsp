@@ -37,10 +37,7 @@ document.getElementById('admin_to_detail').addEventListener('click',function(){
 });
 
 
-/* alert("회원목록이 보이면 된당 : ${list} "); */
-/* Property 'teamid' not found on type domain.MemberBean */
-/* <c:forEach items="${list}" var="m" > 에서 var는 임시적으로 변수 선언하는 거라서 */
-/* ${list}는 request가 가진 값 */
+
 
 
 

@@ -5,7 +5,7 @@ public enum MemberQuery {
 	//object class 가 defualt로 
 	//Enum,class 동급 =>>  object calss 는 객체의 조상이다.
 	
-	LOGIN, INSERT_MEMBER,FIND_ID,COUNT_MEMBER,UPDATE_PW,DELETE_MEMBER, SELECT_ALL, SELECT_BY_NAME, SEARCH_TEAM,SEARCH_ID;
+	LOGIN, INSERT_MEMBER,FIND_ID,COUNT_MEMBER,UPDATE_PW,DELETE_MEMBER, SELECT_ALL, SELECT_BY_NAME, SEARCH_TEAM,SEARCH_ID, SELECT_BY_WORD;
 
 	@Override
 	public String toString() {
@@ -96,6 +96,18 @@ public enum MemberQuery {
 					+ " NAME " + 
 					" FROM MEMBER " + 
 					" WHERE TEAM_ID LIKE '%s' ";
+			break;
+		case SELECT_BY_WORD:
+			query = " SELECT " + 
+					" MEM_ID USERID, " + 
+					" TEAM_ID TEAMID, " + 
+					" NAME, " + 
+					" AGE, " + 
+					" ROLL, " +
+					" GENDER, " +
+					" SSN " + 
+					" FROM MEMBER " + 
+					"  WHERE '%s' LIKE '%s' ";
 			break;
 		}
 		return query;

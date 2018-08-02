@@ -1,7 +1,17 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <!-- jstl.jar 사용하기 위한 것 -->
 
 <div id="content-box">
+	<div id="search_div">
+		<select id="search_box" name="search_box" >
+			<option value="search_option">검색조건</option>
+			<option value="userid">아이디</option>
+			<option value="name">이름 </option>
+			<option value="teamname">팀명</option>
+		</select>
+		<input id="search_word" type="text" placeholder="검색어 입력"/>
+		<input id="search_btn" type="button" value="검색" />
+	</div>
 <table id="content_box_table">
 	<tr id="content_box_meta">
 		<th>아이디</th>
@@ -24,21 +34,7 @@
 </table>
 </div>
 <script>
-document.getElementById('content_box_meta').className='bgColorisYellow'; //style.css에서 설정한 .bgColorisYellow로 설정
-var x = document.querySelectorAll('.username');  //.은 class
-//object와 array가 있는 2차원에서의 단수: object, 복수:Array 
-//=> 따라서 x는 array(왜냐면 All로 선택하니까)
-//톰켓에서 가장큰게 application . 톰켓의 벡터
-for(i in x){
-	x[i].style.color='blue';  //x[i]는 object(x가 array이니까)
-	x[i].style.cursor ='pointer';
-	x[i].addEventListener('click',function(){
-		alert('클릭 '+this.getAttribute('id'));  //★★★★ this는 콜백function을 불러낸 x[i]를 말한다
-		location.href='${context}/admin.do?action=retrieve&page=member_de tail&userid='+this.getAttribute('id');
-	});
-}
-
-
+admin.main('${context}');
 
 
 

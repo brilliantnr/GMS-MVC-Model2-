@@ -47,7 +47,7 @@ var service = (()=>{
 		}
 	};
 })();
-
+/*
 var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것으로 막음. 디폴트와 같은 기능
 	return {
 		check : x=>{
@@ -68,14 +68,14 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 			}
 		},
 
-		main : x=>{  
+		main : x=>{
 			service.addClass(
 					document.getElementById('search_box'),
-					'width80px center floatRight '
+					'width80pt center floatRight '
 					);
 			service.addClass(
 					document.getElementById('search_word'),
-					'width100px floatRight '
+					'width100pt floatRight '
 					);
 			service.addClass(
 					document.getElementById('search_btn'),
@@ -90,33 +90,155 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 					'bgColorYellow '
 					);
 			
-			
 			for(var i of document.querySelectorAll('.username')){
 				service.addClass(i,'cursor fontColorBlue');
-				i.addEventListener('click',function(){
-					location.href=x+'/admin.do?action=retrieve&page=member_detail&userid='+this.getAttribute('id');
+				
+			}
+			}
+			
+			
+			
+
+			document.getElementById('content_box_table').style.width='80%';
+			document.getElementById('content_box_table').style.margin='0, auto';
+			document.getElementById('content_box_search').style.width='80%';
+			document.getElementById('content_box_search').style.margin='0, auto';
+
+			document.getElementById('content_box_meta').className='bgColorYellow'; //style.css에서 설정한 .bgColorisYellow로 설정
+			var x = document.querySelectorAll('.username');  //.은 class
+			//object와 array가 있는 2차원에서의 단수: object, 복수:Array 
+			//=> 따라서 x는 array(왜냐면 All로 선택하니까)
+			//톰켓에서 가장큰게 application . 톰켓의 벡터
+			for(i in x){
+				//x[i]는 object이다(x가 array이니까)
+				//x[i].style.color='blue';  
+				x[i].style.cursor ='pointer';
+				x[i].addEventListener('click',function(){
+					alert('클릭 '+this.getAttribute('id'));  //★★★★ this는 콜백function을 불러낸 x[i]를 말한다
+					location.href='${context}/admin.do?action=retrieve&page=member_detail&userid='+this.getAttribute('id');  //this.getAttribute('id')
 				});
 			};
+			
+
+			document.getElementById('search_btn').addEventListener('click',function(){
+				var select = document.getElementById("search_box").value;
+				alert(select);
+				if(select==='userid'){
+					location.href='${context}/admin.do?action=retrieve&page=member_detail&userid='
+					+document.getElementById('search_word').value;
+					alert('retrieve');
+				}else{
+					location.href='${context}/admin.do?action=search&page=main'+
+							'&option='+document.getElementById("search_box").value+
+							'&word='+document.getElementById('search_word').value;
+					alert('search');
+				}
+			
+		}
 			
 			document.getElementById('search_btn').addEventListener('click',function(){
 				var select = document.getElementById("search_box").value;
 				alert(select);
 				if(select==='userid'){
-					location.href=x+'/admin.do?action=retrieve&page=member_detail&userid='
+					location.href='${context}/admin.do?action=retrieve&page=member_detail&userid='
 					+document.getElementById('search_word').value;
 					alert('retrieve');
 				}else{
-					location.href=x+'/admin.do?action=search&page=main'+
+					location.href='${context}/admin.do?action=search&page=main'+
 							'&option='+document.getElementById("search_box").value+
 							'&word='+document.getElementById('search_word').value;
 					alert('search');
 				}
+				
+
+
+				document.getElementById('content_box_table').style.width='80%';
+				document.getElementById('content_box_table').style.margin='0, auto';
+				document.getElementById('content_box_search').style.width='80%';
+				document.getElementById('content_box_search').style.margin='0, auto';
+
+				document.getElementById('content_box_meta').className='bgColorYellow'; //style.css에서 설정한 .bgColorisYellow로 설정
+				var x = document.querySelectorAll('.username');  //.은 class
+				//object와 array가 있는 2차원에서의 단수: object, 복수:Array 
+				//=> 따라서 x는 array(왜냐면 All로 선택하니까)
+				//톰켓에서 가장큰게 application . 톰켓의 벡터
+				for(i in x){
+					//x[i]는 object이다(x가 array이니까)
+					//x[i].style.color='blue';  
+					x[i].style.cursor ='pointer';
+					x[i].addEventListener('click',function(){
+						alert('클릭 '+this.getAttribute('id'));  //★★★★ this는 콜백function을 불러낸 x[i]를 말한다
+						location.href='${context}/admin.do?action=retrieve&page=member_detail&userid='+this.getAttribute('id');  //this.getAttribute('id')
+					});
+				};
+
+			//get방식으로 보내려면 location.href=''
+			//post 방식으로 보내려면 form 태그 
+
+							
+							
+				
+							
+			 				
+							<div id="search_box">
+							<select id="search_box" name="search_box" >
+								<option value="search_option">검색조건</option>
+								<option value="userid">아이디</option>
+								<option value="name">이름 </option>
+								<option value="teamname">팀명</option>
+							</select>
+							<input id="search_word" type="text" placeholder="검색어 입력"/>
+							<input id="search_btn" type="button" value="검색" />
+						</div> 
+							
+				
+				
+				
+				
+						
+						
+						
+						
+				
+				
+				
+				 var select = document.getElementById("search");	
+				var val = select.options[select.selectedIndex].value;
+				if(val != 'search_condition'){
+					switch(val){
+					case 'search_id':
+						form.action = "${context}/member.do";
+						form.method = "get";  //보안필요없고 빨라야함
+						var node = document.createElement('input');
+							node.setAttribute('type','hidden');
+							node.setAttribute('name','action');
+							node.setAttribute('value','retrieve');
+							form.appendChild(node);
+						form.submit;
+						break;
+					case 'search_name':
+						form.action = "${context}/member.do";
+						form.method = "get";
+						var node = document.createElement('input');
+							node.setAttribute('type','hidden');
+							node.setAttribute('name','action');
+							node.setAttribute('value','search');
+							form.appendChild(node);
+						form.submit;
+						break;	
+					
+				}
+				}else{
+					alert('검색조건을 입력하시오');
+				};
+			 
+
+
 			});
 
-         }
 };})();
 
-
+*/
 
 
 var member = (()=> {

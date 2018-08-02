@@ -9,7 +9,6 @@
 			아이디		<br> <input id="user_id" type="text" name="user-id" /> <br/>
 			비밀번호 	<br> <input id="user_password" type="text" name="user-password" /> <br/> <br/>
 			<input id="login_form_btn" type="button" value="전송" /> 
-			
 		</form>
 	</div>
 	<script>
@@ -22,10 +21,10 @@
 			form.action = "${context}/member.do";  
 			form.method = "post";
 			var node = document.createElement('input');  //<input type="hidden" name="action" value="login"/>	
-			node.setAttribute('type','hidden');
-			node.setAttribute('name','action');
-			node.setAttribute('value','login');
-			form.appendChild(node);
+				node.setAttribute('type','hidden');
+				node.setAttribute('name','action');
+				node.setAttribute('value','login');
+				form.appendChild(node);
 			form.submit();
 		}else {
 			alert(x.text);

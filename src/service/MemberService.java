@@ -13,4 +13,5 @@ public interface MemberService {
 	public void deleteMember(MemberBean member);
 	public boolean login(MemberBean member);
 	public List<MemberBean> searchTeamByName(String teamName);
+	public List<MemberBean> searchMemberByWord(String word);
 }

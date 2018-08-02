@@ -85,6 +85,10 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberBean> searchTeamByName(String teamName) {
 		return MemberDaoImpl.getInstance().searchTeamByName(teamName);
 	}
+	@Override
+	public List<MemberBean> searchMemberByWord(String word) {
+		return MemberDaoImpl.getInstance().searchMemberByWord(word);
+	}
 
 		
 	

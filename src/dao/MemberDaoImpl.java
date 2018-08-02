@@ -256,5 +256,41 @@ public class MemberDaoImpl implements MemberDao{
 	    WHERE TEAM_ID LIKE 'A';*/
 		return lst;
 	}
+	@Override
+	public List<MemberBean> searchMemberByWord(String word) {
+		List<MemberBean> lst=new ArrayList<>();
+		String query = " SELECT " + 
+				" MEM_ID USERID, " + 
+				" TEAM_ID TEAMID, " + 
+				" NAME, " + 
+				" AGE, " + 
+				" ROLL, " +
+				" GENDER, " +
+				" SSN " + 
+				" FROM MEMBER " + 
+				"  WHERE "+word.split("/")[0]+" LIKE '%"+word.split("/")[1]+"%'";
+		try {
+			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
+					.getConnection().createStatement().executeQuery(query);
+			MemberBean m = null;
+			while(rs.next()) {
+				m=new MemberBean();
+				m.setUserid(rs.getString("USERID"));
+				m.setTeamId(rs.getString("TEAMID"));
+				m.setName(rs.getString("NAME"));
+				m.setAge(rs.getString("AGE"));
+				m.setGender(rs.getString("GENDER"));
+				m.setSsn(rs.getString("SSN"));
+				m.setRoll(rs.getString("ROLL"));
+				System.out.println("5. DAO findMemberId---\n  : "+m);
+				lst.add(m);
+			}
+		} catch (Exception e) {	e.printStackTrace();}
+		/*SELECT MEM_ID ,NAME
+	    FROM MEMBER
+	    WHERE TEAM_ID LIKE 'A';*/
+		return lst;
+	
+	}
 	
 }
