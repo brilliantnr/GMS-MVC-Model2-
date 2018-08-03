@@ -30,6 +30,7 @@ public class Commander{
 			break;
 		case COUNT:
 			System.out.println("3. Commander COUNT 진입--");
+			cmd=new CountCommand(request);
 			break;
 		case UPDATE:
 			System.out.println("3. Commander UPDATE 진입--");

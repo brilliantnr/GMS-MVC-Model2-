@@ -67,16 +67,11 @@ public enum MemberQuery {
 					"  WHERE MEM_ID LIKE '%s' ";
 			break;		
 		case SELECT_ALL:
-			query = " SELECT " + 
-					" MEM_ID USERID, " + 
-					" TEAM_ID TEAMID, " + 
-					" NAME, " + 
-					" AGE, " + 
-					" ROLL, " +
-					" PASSWORD, " + 
-					" GENDER, " + 
-					" SSN " + 
-					" FROM MEMBER ";
+			query = " SELECT T.* FROM (SELECT ROWNUM SEQ, " + 
+					" M.* " + 
+					" FROM MEMBER M " + 
+					" ORDER BY SEQ DESC) T " + 
+					" WHERE T.SEQ BETWEEN 1 AND 5 ";
 			break;
 		case SELECT_BY_NAME:
 			query = " SELECT " + 

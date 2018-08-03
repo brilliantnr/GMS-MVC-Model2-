@@ -21,6 +21,10 @@ public class ListCommand extends Command {
 	public void excute() {
 //		List<MemberBean> list = MemberServiceImpl.getInstance().listMember();   // list에 service에서 받은 값을 담는다
 		request.setAttribute("list", MemberServiceImpl.getInstance().listMember());  //★★★★  ${}안에 list를 넣어서 호출할거다 
+		request.setAttribute("count", MemberServiceImpl.getInstance().countMember());
+		int count = (int) request.getAttribute("count");
+		request.setAttribute("listpage", Math.ceil(count/5));
+		System.out.println("listpage = "+request.getAttribute("listpage"));
 		System.out.println("----리스트커맨드 excute----");
 		super.excute();
 	}

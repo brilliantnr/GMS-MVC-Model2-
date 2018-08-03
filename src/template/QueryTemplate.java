@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import domain.MemberBean;
 import enums.Vendor;
 import lombok.Data;
 import pool.DBConstant;
 
-@Data
+@Data   //롬복 추가해야함!!!!!!
 public abstract class QueryTemplate {
 	HashMap<String, Object>map;
 	List<Object> list;
@@ -27,6 +28,7 @@ public abstract class QueryTemplate {
 		initialize();
 		startPlay();
 		endPlay();
+
 	}
 	abstract void initialize();
 	abstract void startPlay();
@@ -39,5 +41,11 @@ abstract class
 
 템플릿 메서드 왜 쓰냐면 각각 다른 직원쓰더라도 결과물 같다
 안드로이드에서 필수로 쓰임
+
+		MemberBean m = new MemberBean();  <-생성자로 
+		Class<memberbean> clazz = MemberBean.class; <- 실물을 가져오는것
+		
+		리플렉션 
+		
 
 */

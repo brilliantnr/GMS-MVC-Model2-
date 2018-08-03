@@ -38,7 +38,7 @@ public class AdminController extends HttpServlet {
 			Carrier.forward(request, response);
 			break;
 		case COUNT:
-			Carrier.forward(request, response);
+			Carrier.redirect(request, response, "/member.do?action=list&page=main&count="+request.getParameter("count")+"&listpage="+request.getParameter("listpage"));
 			System.out.println("-------controller 카운트 END-------");
 			break;
 		}

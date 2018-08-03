@@ -23,9 +23,6 @@ public class PstmtQuery extends QueryTemplate {
 	@Override
 	void startPlay() {
 		System.out.println("----2단계");
-		String aa ="%"+map.get("value").toString()+"%";
-		//DatabaseFactory로 가자
-		//pstmt = DatabaseFactory.createDatabase(map)
 		try {
 			pstmt = DatabaseFactory.createDatabase2(map)
 					.getConnection().prepareStatement((String)map.get("sql"));
