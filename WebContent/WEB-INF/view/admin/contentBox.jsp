@@ -37,7 +37,6 @@
 admin.main('${context}');
 
 
-
 /*이렇게 살지말자...ㅋ.ㅋ 올드해
 <td><a href="${context}/admin.do?action=retrieve&page=member_detail&userid=${m.userid}" style="cursor: pointer;">${m.name}</a></td>
 a태그에 style, href 잘 안쓴다.
