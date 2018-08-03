@@ -6,10 +6,12 @@ import domain.*;
 import enums.*;
 import factory.*;
 import pool.DBConstant;
+import template.PstmtQuery;
 //★ MemberQuery.LOGIN.toString() <- Enum 사용 
 //select 는 리턴타입 void 아니라서 executeQuery   리턴타입필요하니까  resultset 쓴다
 //insert,update,delete는 리턴타입 void 니까
 //-> .executeUpdate(sql) 로 사용해야함.
+import template.QueryTemplate;
 
 
 public class MemberDaoImpl implements MemberDao{
@@ -64,19 +66,12 @@ public class MemberDaoImpl implements MemberDao{
 							member.getTeamId(), member.getRoll(), member.getGender(), member.getAge()));
 			System.out.println("5. Dao 가입결과:"+rs);
 		} catch (Exception e) {e.printStackTrace();}
-		/*" MEM_ID, " + 
-		" NAME, " + 
-		" SSN, " + 
-		" PASSWORD, " + 
-		" TEAM_ID, " + 
-		" ROLL, " + 
-		" GENDER, " + 
-		" AGE   " + */
 	}
 
 	@Override
 	public List<MemberBean> listMember() {
 		List<MemberBean> lst =new ArrayList<>();
+		System.out.println("5. DAO listMember --진입");
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 					.getConnection().createStatement().executeQuery(MemberQuery.SELECT_ALL.toString());
@@ -102,6 +97,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public List<MemberBean> selectMemberByName(String name) {
 		List<MemberBean> lst =new ArrayList<>();
+		System.out.println("5. DAO selectMemberByName --진입");
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 					.getConnection().createStatement().executeQuery(MemberQuery.SELECT_BY_NAME.toString());
@@ -125,6 +121,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int countMember() {
 		int count = 0;
+		System.out.println("5. DAO countMember --진입");
 		try {
 			/*Class.forName(DBConstant.ORACLE_DRIVER);
 			Connection conn = DriverManager.getConnection("","","");
@@ -258,6 +255,22 @@ public class MemberDaoImpl implements MemberDao{
 	}
 	@Override
 	public List<MemberBean> searchMemberByWord(String word) {
+		QueryTemplate q = new PstmtQuery();
+		List<MemberBean> list=new ArrayList<>();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("column", word.split("/")[0]);
+		map.put("value", word.split("/")[1]);
+		map.put("table",Domain.MEMBER);
+		q.play(map);
+		for(Object s: q.getList()) {
+			list.add((MemberBean) s);
+		}
+		
+		return list;
+	
+	}
+/*	@Override
+	public List<MemberBean> searchMemberByWord(String word) {
 		List<MemberBean> lst=new ArrayList<>();
 		String query = " SELECT " + 
 				" MEM_ID USERID, " + 
@@ -270,7 +283,8 @@ public class MemberDaoImpl implements MemberDao{
 				" FROM MEMBER " + 
 				"  WHERE "+word.split("/")[0]+" LIKE '%"+word.split("/")[1]+"%'";
 		try {
-			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
+			ResultSet rs = DatabaseFactory.createDatabase(
+					Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 					.getConnection().createStatement().executeQuery(query);
 			MemberBean m = null;
 			while(rs.next()) {
@@ -286,11 +300,11 @@ public class MemberDaoImpl implements MemberDao{
 				lst.add(m);
 			}
 		} catch (Exception e) {	e.printStackTrace();}
-		/*SELECT MEM_ID ,NAME
+		SELECT MEM_ID ,NAME
 	    FROM MEMBER
-	    WHERE TEAM_ID LIKE 'A';*/
+	    WHERE TEAM_ID LIKE 'A';
 		return lst;
 	
-	}
+	}*/
 	
 }

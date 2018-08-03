@@ -46,7 +46,7 @@ public class MemberController extends HttpServlet {
 			System.out.println("-------controller 아이디찾기 END -------");
 			break;
 		case COUNT:
-			
+			Carrier.forward(request, response);
 			System.out.println("-------controller 카운트 END-------");
 			break;
 		case UPDATE:

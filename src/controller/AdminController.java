@@ -37,6 +37,10 @@ public class AdminController extends HttpServlet {
 			System.out.println("5. adminController 관리자  SEARCH ");
 			Carrier.forward(request, response);
 			break;
+		case COUNT:
+			Carrier.forward(request, response);
+			System.out.println("-------controller 카운트 END-------");
+			break;
 		}
 	}
 
