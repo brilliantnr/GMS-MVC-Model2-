@@ -83,8 +83,8 @@ public class MemberDaoImpl implements MemberDao{
 				mem.setPassword(rs.getString("PASSWORD"));
 				mem.setRoll(rs.getString("ROLL"));
 				mem.setSsn(rs.getString("SSN"));
-				mem.setUserid(rs.getString("MEM_ID"));
-				mem.setTeamId(rs.getString("TEAM_ID"));
+				mem.setUserid(rs.getString("USERID"));
+				mem.setTeamId(rs.getString("TEAMID"));
 				mem.setGender(rs.getString("GENDER"));
 				lst.add(mem);
 			}
@@ -103,8 +103,8 @@ public class MemberDaoImpl implements MemberDao{
 					.getConnection().createStatement().executeQuery(MemberQuery.SELECT_BY_NAME.toString());
 			MemberBean mem = null;
 			while(rs.next()) {
-				mem.setUserid(rs.getString("MEM_ID"));
-				mem.setTeamId(rs.getString("TEAM_ID"));
+				mem.setUserid(rs.getString("USERID"));
+				mem.setTeamId(rs.getString("TEAMID"));
 				mem.setName(rs.getString("NAME"));
 				mem.setAge(rs.getString("AGE"));
 				mem.setRoll(rs.getString("ROLL"));
@@ -265,9 +265,7 @@ public class MemberDaoImpl implements MemberDao{
 		for(Object s: q.getList()) {
 			list.add((MemberBean) s);
 		}
-		
 		return list;
-	
 	}
 /*	@Override
 	public List<MemberBean> searchMemberByWord(String word) {
@@ -306,5 +304,23 @@ public class MemberDaoImpl implements MemberDao{
 		return lst;
 	
 	}*/
-	
+	@Override
+	public List<MemberBean> selectList(Map<?, ?> param) {
+		List<MemberBean> list = new ArrayList<>();
+		String beginRow = (String) param.get("beginRow");
+		String endRow = (String) param.get("endRow");
+		
+		System.out.println("--beginRow : "+beginRow);
+		System.out.println("--endRow : "+endRow);
+		
+		QueryTemplate q= new PstmtQuery();
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("table","(SELECT ROWNUM SEQ, M.* FROM MEMBER M ORDER BY SEQ DESC) MEMBER");
+		map.put("column", " MEMBER.SEQ BETWEEN "+beginRow+" AND "+endRow);
+		q.play(map);
+		for(Object s : q.getList()) {
+			list.add((MemberBean) s);
+		}
+		return list;
+	}
 }

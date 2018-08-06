@@ -89,6 +89,11 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberBean> searchMemberByWord(String word) {
 		return MemberDaoImpl.getInstance().searchMemberByWord(word);
 	}
+	@Override
+	public List<MemberBean> getList(Map<?, ?> param) {
+		return MemberDaoImpl.getInstance().selectList(param);
+	}
+
 
 		
 	

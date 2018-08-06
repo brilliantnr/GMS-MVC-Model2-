@@ -16,7 +16,7 @@ public class ColumnFinder {
 		default:
 			break;
 		}
-		Field[] f = clazz.getDeclaredFields();   //import java.lang.reflect.Field; 
+		Field[] f = clazz.getDeclaredFields();   //import java.lang.reflect.Field; 리플렉션
 		//Field[] : 필드 리스트 확인
 		for(int i =0;i<f.length;i++) {
 			s+=(i!=(f.length-1))?

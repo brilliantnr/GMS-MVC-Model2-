@@ -13,24 +13,24 @@ public enum MemberQuery {
 		switch (this) {
 		case LOGIN:
 			query = " SELECT " + 
-					" MEM_ID USERID, " + 
+					" USERID, " + 
 					" NAME, " + 
 					" PASSWORD PW, " + 
 					" SSN, " + 
 					" AGE, " + 
-					" TEAM_ID TEAMID, " + 
+					" TEAMID, " + 
 					" GENDER, " +
 					" ROLL " +
 					" FROM MEMBER " + 
-					"  WHERE MEM_ID LIKE '%s' AND PASSWORD LIKE '%s'   ";
+					"  WHERE LIKE '%s' AND PASSWORD LIKE '%s'   ";
 			break;
 		case INSERT_MEMBER:
 			query =" INSERT INTO MEMBER(" + 
-					" MEM_ID, " + 
+					" USERID, " + 
 					" NAME, " + 
 					" SSN, " + 
 					" PASSWORD, " + 
-					" TEAM_ID, " + 
+					" TEAMID , " + 
 					" ROLL, " + 
 					" GENDER, " + 
 					" AGE   " + 
@@ -40,8 +40,8 @@ public enum MemberQuery {
 			
 		case FIND_ID:
 			query = " SELECT " + 
-					" MEM_ID USERID, " + 
-					" TEAM_ID TEAMID, " + 
+					" USERID, " + 
+					" TEAMID, " + 
 					" NAME, " + 
 					" AGE, " + 
 					" GENDER, " + 
@@ -49,7 +49,7 @@ public enum MemberQuery {
 					" PASSWORD PW ," + 
 					" SSN " + 
 					" FROM MEMBER " + 
-					" WHERE MEM_ID LIKE '%s' ";
+					" WHERE LIKE '%s' ";
 			break;
 		case COUNT_MEMBER:
 			query = "  SELECT COUNT(*) AS count FROM MEMBER ";
@@ -58,13 +58,13 @@ public enum MemberQuery {
 			query = " UPDATE MEMBER " + 
 					" SET " + 
 					" PASSWORD = '%s', " + 
-					" TEAM_ID = '%s', " + 
+					" = '%s', " + 
 					" ROLL = '%s' " + 
-					" WHERE MEM_ID LIKE '%s' ";
+					" WHERE LIKE '%s' ";
 			break;	
 		case DELETE_MEMBER:
 			query = "  DELETE FROM MEMBER " + 
-					"  WHERE MEM_ID LIKE '%s' ";
+					"  WHERE LIKE '%s' ";
 			break;		
 		case SELECT_ALL:
 			query = " SELECT T.* FROM (SELECT ROWNUM SEQ, " + 
@@ -75,8 +75,8 @@ public enum MemberQuery {
 			break;
 		case SELECT_BY_NAME:
 			query = " SELECT " + 
-					" MEM_ID USERID, " + 
-					" TEAM_ID TEAMID, " + 
+					" USERID, " + 
+					" TEAMID, " + 
 					" NAME, " + 
 					" AGE, " + 
 					" ROLL, " +
@@ -87,15 +87,15 @@ public enum MemberQuery {
 					"  WHERE NAME LIKE '%s' ";
 			break;
 		case SEARCH_TEAM:
-			query = "SELECT MEM_ID ,"
+			query = "SELECT ,"
 					+ " NAME " + 
 					" FROM MEMBER " + 
-					" WHERE TEAM_ID LIKE '%s' ";
+					" WHERE LIKE '%s' ";
 			break;
 		case SELECT_BY_WORD:
 			query = " SELECT " + 
-					" MEM_ID USERID, " + 
-					" TEAM_ID TEAMID, " + 
+					" USERID, " + 
+					" TEAMID, " + 
 					" NAME, " + 
 					" AGE, " + 
 					" ROLL, " +

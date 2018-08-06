@@ -1,11 +1,8 @@
 package template;
 
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
-import domain.MemberBean;
 import enums.Vendor;
 import lombok.Data;
 import pool.DBConstant;
@@ -15,6 +12,9 @@ public abstract class QueryTemplate {
 	HashMap<String, Object>map;
 	List<Object> list;
 	PreparedStatement pstmt;
+	abstract void initialize();
+	abstract void startPlay();
+	abstract void endPlay();
 	
 	public final void play(HashMap<String, Object>map) {
 		//final 붙으면 후손들이 오버라이드 못한다
@@ -28,11 +28,7 @@ public abstract class QueryTemplate {
 		initialize();
 		startPlay();
 		endPlay();
-
 	}
-	abstract void initialize();
-	abstract void startPlay();
-	abstract void endPlay();
 }
 
 /*

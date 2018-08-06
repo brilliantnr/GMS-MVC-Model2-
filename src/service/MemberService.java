@@ -6,6 +6,7 @@ import domain.*;
 public interface MemberService {
 	public void createMember(MemberBean member);
 	public List<MemberBean> listMember();
+	public List<MemberBean> getList(Map<?, ?>param);
 	public List<MemberBean> readMemberByName(String name);
 	public MemberBean findMemberId(MemberBean member);
 	public int countMember();

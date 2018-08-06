@@ -1,12 +1,13 @@
 package dao;
 
-import java.util.List;
+import java.util.*;
 
 import domain.*;
 
 public interface MemberDao {
 	public void insertMember(MemberBean member);
 	public List<MemberBean> listMember();
+	public List<MemberBean> selectList(Map<?, ?>param);
 	public List<MemberBean> selectMemberByName(String name);
 	public MemberBean findMemberId(MemberBean member);
 	public MemberBean selectMemberById(String id);
