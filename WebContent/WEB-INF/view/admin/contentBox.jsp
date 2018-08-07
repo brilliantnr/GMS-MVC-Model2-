@@ -37,7 +37,7 @@
 					<c:forEach begin="${beginPage}" end="${endPage}" step="1" varStatus="i">
 						<a href="#">${i.index}</a>
 					</c:forEach>
-					<c:if test="${totalPage gt endPage}">다음▶</c:if>
+					<c:if test="${totalPage gt endPage}">다음▶</c:if>  
 					<c:if test="${totalPage le endPage}"></c:if>
 				</ul>
 			</td>
