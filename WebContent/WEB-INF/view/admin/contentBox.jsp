@@ -13,7 +13,7 @@
 		</select>
 	</div>
 	<table id="content_box_table">
-		<tr id="content_box_meta"> 
+		<tr id="content_box_meta">
 			<th>아이디</th>
 			<th>이 름</th>
 			<th>나 이</th>
@@ -34,19 +34,28 @@
 		<tr>
 			<td colspan="6">전체회원수 : ${count}
 				<ul class="pageBox">
+					<c:if test="${existPrev}">
+						<li><a class="prePage" id="prePage" >◀이전</a></li>
+					</c:if>
 					<c:forEach begin="${beginPage}" end="${endPage}" step="1" varStatus="i">
-						<a class="pageNum" id="${i.index}" >${i.index}</a>
+						<li>
+						<a class="pageNum" id="${i.index}">${i.index}</a>
+						</li>
 					</c:forEach>
-					<c:if test="${pageCount gt endPage}"><a class="nextPage" id="nextPage">다음▶</a></c:if>
-					<c:if test="${pageCount le endPage}"></c:if>
+					<c:if test="${existNext}">
+						<li><a class="nextPage" id="nextPage">다음▶</a></li>
+					</c:if>
+					<%-- 					<c:if test="${pageCount gt endPage}"><a class="nextPage" id="nextPage">다음▶</a></c:if>
+					<c:if test="${pageCount le endPage}"></c:if> --%>
 				</ul>
 			</td>
 		</tr>
 	</table>
 </div>
 <script>
-admin.main('${context}');
-
-
-
+	admin.main({
+		context : '${context}',
+		endPage : '${endPage}',
+		beginPage:'${beginPage}'
+	});
 </script>

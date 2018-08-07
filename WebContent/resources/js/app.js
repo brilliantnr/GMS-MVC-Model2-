@@ -88,46 +88,54 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 					document.getElementById('content_box_meta'),
 					'bgColorYellow '
 					);
-
-			for(var i of document.querySelectorAll('.username')){
-				service.addClass(i,'cursor fontColorBlue');
-				i.addEventListener('click',function(){
-					location.href=x+'/admin.do?action=retrieve&page=member_detail&userid='+this.getAttribute('id');   //★★★★★★★
-				});
-			};
-			
-			for(var i of document.querySelectorAll('.pageNum')){
-				i.addEventListener('click',function(){
-					service.addClass(i,'cursor fontColorBlue');
-					alert('pageNum'+this.getAttribute('id'));
-					location.href=x+'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
-				});
-			}; // jsp 에서는 for (i of object) 가 돌아가지 않습니다 ~_~ js파일로 옮겨주세용 !
-			
-			for(var i of document.querySelectorAll('.nextPage')){
-				i.addEventListener('click',function(){
-					service.addClass(i,'cursor fontColorBlue');
-					alert('next누름 : '+(x.endPage+1));
-					location.href=x+'/admin.do?action=list&page=main&pageNum='+(x.endPage+1);
-				});
-			};
-			
 			
 			document.getElementById('search_btn').addEventListener('click',function(){
 				var select = document.getElementById("search_box").value;
 				alert(select);
 				if(select==='userid'){
-					location.href=x+'/admin.do?action=retrieve&page=member_detail&userid='
+					location.href=x.context+'/admin.do?action=retrieve&page=member_detail&userid='
 					+document.getElementById('search_word').value;
 					alert('retrieve');
 				}else{
-					location.href=x+'/admin.do?action=search&page=main'+
+					location.href=x.context+'/admin.do?action=search&page=main'+
 							'&option='+document.getElementById("search_box").value+
 							'&word='+document.getElementById('search_word').value;
 					alert('search');
 				}
 			});
 
+			for(var i of document.querySelectorAll('.username')){
+				service.addClass(i,'cursor fontColorBlue');
+				i.addEventListener('click',function(){
+					location.href=x.context+'/admin.do?action=retrieve&page=member_detail&userid='+this.getAttribute('id');   //★★★★★★★
+				});
+			};
+			
+			
+			
+			document.getElementById('nextPage').addEventListener('click',function(){
+				alert('다음▶ : '+(x.endPage*1+1));
+				location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.endPage*1+1);
+			});
+			
+			document.querySelector('.prePage').addEventListener('click',function(){
+				alert('◀이전 : '+(x.beginPage*1-1));
+				location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.beginPage*1-1);
+			});
+			
+			
+			
+			for(var i of document.querySelectorAll('.pageNum')){
+				i.addEventListener('click',function(){
+					service.addClass(i,'cursor fontColorBlue');
+					alert('pageNum'+this.getAttribute('id'));
+					location.href=x.context+'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
+				});
+			}; // jsp 에서는 for (i of object) 가 돌아가지 않습니다 ~_~ js파일로 옮겨주세용 !
+			
+			//querySelectorAll은 클래스를 몽땅 뒤진다. 느림 (class이름을 줄때는 담기는 값이 많을때 쓰자)
+			//하나만 부를거면 getAttribute
+	
          }
 };})();
 
