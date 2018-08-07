@@ -7,7 +7,6 @@
 var router = (()=> {
 	return {move : x =>{
 		console.log('클릭 테스트 성공 ${context}');
-		
 		//JSON 이용
 		location.href =
 			x.context +"/" 
@@ -89,14 +88,30 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 					document.getElementById('content_box_meta'),
 					'bgColorYellow '
 					);
-			
-			
+
 			for(var i of document.querySelectorAll('.username')){
 				service.addClass(i,'cursor fontColorBlue');
 				i.addEventListener('click',function(){
-					location.href=x+'/admin.do?action=retrieve&page=member_detail&userid='+this.getAttribute('id');
+					location.href=x+'/admin.do?action=retrieve&page=member_detail&userid='+this.getAttribute('id');   //★★★★★★★
 				});
 			};
+			
+			for(var i of document.querySelectorAll('.pageNum')){
+				i.addEventListener('click',function(){
+					service.addClass(i,'cursor fontColorBlue');
+					alert('pageNum'+this.getAttribute('id'));
+					location.href=x+'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
+				});
+			}; // jsp 에서는 for (i of object) 가 돌아가지 않습니다 ~_~ js파일로 옮겨주세용 !
+			
+			for(var i of document.querySelectorAll('.nextPage')){
+				i.addEventListener('click',function(){
+					service.addClass(i,'cursor fontColorBlue');
+					alert('next누름 : '+(x.endPage+1));
+					location.href=x+'/admin.do?action=list&page=main&pageNum='+(x.endPage+1);
+				});
+			};
+			
 			
 			document.getElementById('search_btn').addEventListener('click',function(){
 				var select = document.getElementById("search_box").value;

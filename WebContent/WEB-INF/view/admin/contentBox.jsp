@@ -13,7 +13,7 @@
 		</select>
 	</div>
 	<table id="content_box_table">
-		<tr id="content_box_meta">
+		<tr id="content_box_meta"> 
 			<th>아이디</th>
 			<th>이 름</th>
 			<th>나 이</th>
@@ -35,10 +35,10 @@
 			<td colspan="6">전체회원수 : ${count}
 				<ul class="pageBox">
 					<c:forEach begin="${beginPage}" end="${endPage}" step="1" varStatus="i">
-						<a href="#">${i.index}</a>
+						<a class="pageNum" id="${i.index}" >${i.index}</a>
 					</c:forEach>
-					<c:if test="${totalPage gt endPage}">다음▶</c:if>
-					<c:if test="${totalPage le endPage}"></c:if>
+					<c:if test="${pageCount gt endPage}"><a class="nextPage" id="nextPage">다음▶</a></c:if>
+					<c:if test="${pageCount le endPage}"></c:if>
 				</ul>
 			</td>
 		</tr>
@@ -46,4 +46,7 @@
 </div>
 <script>
 admin.main('${context}');
+
+
+
 </script>

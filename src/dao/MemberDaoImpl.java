@@ -6,13 +6,11 @@ import domain.*;
 import enums.*;
 import factory.*;
 import pool.DBConstant;
-import template.PstmtQuery;
+import template.*;
 //★ MemberQuery.LOGIN.toString() <- Enum 사용 
 //select 는 리턴타입 void 아니라서 executeQuery   리턴타입필요하니까  resultset 쓴다
 //insert,update,delete는 리턴타입 void 니까
 //-> .executeUpdate(sql) 로 사용해야함.
-import template.QueryTemplate;
-
 
 public class MemberDaoImpl implements MemberDao{
 	private static MemberDao instance = new MemberDaoImpl();
@@ -307,8 +305,8 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public List<MemberBean> selectList(Map<?, ?> param) {
 		List<MemberBean> list = new ArrayList<>();
-		String beginRow = (String) param.get("beginRow");
-		String endRow = (String) param.get("endRow");
+		int beginRow =  (int) param.get("beginRow");
+		int endRow =  (int) param.get("endRow");
 		
 		System.out.println("--beginRow : "+beginRow);
 		System.out.println("--endRow : "+endRow);
