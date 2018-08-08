@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 
 import domain.*;
+import proxy.*;
 import service.*;
 
 public class ListCommand extends Command {
@@ -19,7 +20,25 @@ public class ListCommand extends Command {
 	
 	@Override
 	public void excute() {
-        // List<MemberBean> list = MemberServiceImpl.getInstance().listMember(); //list에 service에서 받은 값을 담는다
+		Map<String, Object> paramMap = new HashMap<>();
+		String pageNum = request.getParameter("pageNum");
+		PageProxy pxy = new PageProxy();
+		int pn = (pageNum == null) ? 1 : Integer.parseInt(pageNum);
+		pxy.carryOut(pn);
+		Pagination page = pxy.getPagination();
+		paramMap.put("beginRow", page.getBeginRow());
+		paramMap.put("endRow", page.getEndRow());
+		request.setAttribute("list", MemberServiceImpl.getInstance().getList(paramMap));
+		request.setAttribute("page", page);
+		super.excute();
+		
+
+		
+		
+		
+		
+		
+		/*        // List<MemberBean> list = MemberServiceImpl.getInstance().listMember(); //list에 service에서 받은 값을 담는다
         
         int rowCount = MemberServiceImpl.getInstance().countMember();  //게시물수
         //int listSize=5;
@@ -79,6 +98,6 @@ public class ListCommand extends Command {
         // System.out.println("----리스트커맨드 excute----");
         super.excute();
 		
-		
+*/		
 	}
 }
