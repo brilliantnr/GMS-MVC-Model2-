@@ -6,7 +6,8 @@ import service.MemberServiceImpl;
 @Data
 public class Pagination implements proxy{
 	
-	int memberCount, rowCount, blockSize, blockNum, pageNum, pageCount, beginPage, endPage, beginRow, endRow;
+	int memberCount, rowCount, blockSize, blockNum, pageNum, pageCount, prevBlock, nextBlock, beginPage, endPage,
+			beginRow, endRow;
 	boolean existPrev, existNext;
 
 	 @Override
@@ -16,9 +17,14 @@ public class Pagination implements proxy{
 		this.rowCount = MemberServiceImpl.getInstance().countMember(); // 게시물수
 		this.blockSize = 5; // 1~5, 6~10
 		this.pageCount = (int) Math.ceil(rowCount / blockSize); // 총페이지수
+
+		this.blockNum=(int) Math.floor(beginPage / blockSize + 1) ;  //1~5->blockNum:1
+		
 		this.beginPage = (int) (Math.floor((pageNum - 1) / blockSize) * blockSize + 1);
-		this.blockNum=(int) Math.floor(beginPage / blockSize + 1) ;
 		this.endPage = (pageCount > blockNum * blockSize) ? blockNum * blockSize : pageCount;
+
+		this.prevBlock = endPage - blockSize;
+		this.nextBlock = beginPage + blockSize;		
 		
 		this.beginRow = (pageNum - 1) * blockSize + 1;
 		this.endRow = pageNum * blockSize;

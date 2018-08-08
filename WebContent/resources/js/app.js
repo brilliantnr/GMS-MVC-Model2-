@@ -111,19 +111,19 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 				});
 			};
 			
+			if(document.getElementById('nextBlock')===null){}else{
+				document.getElementById('nextBlock').addEventListener('click',function(){
+					alert('다음▶ : '+(x.endPage*1+1));
+					location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.endPage*1+1);//JSON사용
+				});
+			};
 			
-			
-			document.getElementById('nextPage').addEventListener('click',function(){
-				alert('다음▶ : '+(x.endPage*1+1));
-				location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.endPage*1+1);
-			});
-			
-			document.querySelector('.prePage').addEventListener('click',function(){
-				alert('◀이전 : '+(x.beginPage*1-1));
-				location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.beginPage*1-1);
-			});
-			
-			
+			if(document.getElementById('preBlock')===null){}else{
+				document.getElementById('preBlock').addEventListener('click',function(){
+					alert('◀이전 : '+(x.beginPage*1-1));
+					location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.beginPage*1-1);
+				});
+			};
 			
 			for(var i of document.querySelectorAll('.pageNum')){
 				i.addEventListener('click',function(){
@@ -132,6 +132,8 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 					location.href=x.context+'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
 				});
 			}; // jsp 에서는 for (i of object) 가 돌아가지 않습니다 ~_~ js파일로 옮겨주세용 !
+
+			//this 쓰려면 function(){} 으로 써야한다( ()=>{}이거는 node, AJAX에서 쓰이는 거라 안먹는다)
 			
 			//querySelectorAll은 클래스를 몽땅 뒤진다. 느림 (class이름을 줄때는 담기는 값이 많을때 쓰자)
 			//하나만 부를거면 getAttribute
