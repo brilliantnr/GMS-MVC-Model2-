@@ -32,11 +32,6 @@ public class ListCommand extends Command {
 		request.setAttribute("page", page);
 		super.excute();
 		
-
-		
-		
-		
-		
 		
 		/*        // List<MemberBean> list = MemberServiceImpl.getInstance().listMember(); //list에 service에서 받은 값을 담는다
         
