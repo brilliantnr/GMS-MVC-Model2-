@@ -33,8 +33,10 @@ public class ListCommand extends Command {
 		super.excute();
 		
 		
+		
+		
+		
 		/*        // List<MemberBean> list = MemberServiceImpl.getInstance().listMember(); //list에 service에서 받은 값을 담는다
-        
         int rowCount = MemberServiceImpl.getInstance().countMember();  //게시물수
         //int listSize=5;
         int blockSize = 5;   //1~5, 6~10
