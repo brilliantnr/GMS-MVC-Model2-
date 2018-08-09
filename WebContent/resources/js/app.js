@@ -1,9 +1,5 @@
-// router 	:단순 클릭이동
-// service 	:필수항목 입력
-// admin 	:관리자체크
-// member 	:getter,setter/ 간단연산
+"use strict";
 
-"use strict";  //문법엄격히
 var router = (()=> {
 	return {move : x =>{
 		console.log('클릭 테스트 성공 ${context}');
@@ -13,11 +9,6 @@ var router = (()=> {
 			+  x.domain 
 			+ ".do?action=" + x.action
 			+ "&page=" + x.page
-		
-		/*//배열
-		 * location.href =
-			x[0] +"/" + x[1] + ".do?action=" + x[2]
-				+ "&page=" + x[3]*/
 	}};
 })();
 
@@ -25,9 +16,9 @@ var router = (()=> {
 var service = (()=>{
 	return {
 		nullChecker : x=>{
-			var i = 0;					//0값으로 초기화 하는 것은 int 타입으로 정의하는 것과 같다.
-			var j ={ 					//j 는 json을 의미.  json은 자바의 해시맵과 비슷
-					checker : true, 	// key : value 
+			var i = 0;
+			var j ={
+					checker : true,
 					text : '필수항목 입력바랍니다'
 			};
 			for(i in x){
@@ -47,9 +38,41 @@ var service = (()=>{
 	};
 })();
 
+
+var common = (()=>{
+	return{
+		main : x=>{
+			document.getElementById('moveToAdminMain').addEventListener('click',function(){
+				var isAdmin = confirm('관리자입니까?');
+				if(isAdmin){
+					var password = prompt('관리자비번을 입력바랍니다');
+					if(password == 1){
+						router.move({
+							context:x,
+							domain:"admin",
+							action:"search",
+							page:"main"
+						});
+					}
+				}else{
+					alert('관리자만 접근이 허용됩니다');
+				}
+			
+			});
+		
+		
+		
+		
+		
+		
+		
+		}
+	}
+})();
+
 var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것으로 막음. 디폴트와 같은 기능
 	return {
-		check : x=>{
+		/*check : x=>{
 			var isAdmin = confirm('관리자입니까?');  //confirm은 window의 객체, window가 객체를 만드는 것을 bom, confirm은 bom의 메소드
 			if(isAdmin){  //if 조건문 안에 연산없으면 불린타입으로 리턴하는 것
 				var password = prompt('관리자비번을 입력바랍니다');
@@ -65,7 +88,7 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 				//boolean( NO인 경우)
 				alert('관리자만 접근이 허용됩니다');
 			}
-		},
+		},*/
 
 		main : x=>{  
 			service.addClass(
@@ -440,4 +463,8 @@ this.getName = function(z) {
 }
 };*/
 
-
+//=============================================================================================================
+/*//배열
+ * location.href =
+	x[0] +"/" + x[1] + ".do?action=" + x[2]
+		+ "&page=" + x[3]*/

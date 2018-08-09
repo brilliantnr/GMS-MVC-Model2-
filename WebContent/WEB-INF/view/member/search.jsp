@@ -35,7 +35,7 @@
 			<td colspan="6">전체회원수 : ${memberCount}
 				<ul class="pageBox">
 					<c:if test="${page.existPrev}">
-						<li><a id="preBlock" >◀이전</a></li>
+						<li><a class="preBlock" id="${page.preBlock}" >◀이전</a></li>
 					</c:if>
 					<c:forEach begin="${page.beginPage}" end="${page.endPage}" step="1" varStatus="i">
 						<li>
@@ -43,19 +43,17 @@
 						</li>
 					</c:forEach>
 					<c:if test="${page.existNext}">
-						<li><a id="nextBlock">다음▶</a></li>
+						<li><a class="nextBlock" id="${page.nextBlock}">다음▶</a></li>
 					</c:if>
-					<%--<c:if test="${pageCount gt endPage}"><a class="nextPage" id="nextPage">다음▶</a></c:if>
-					<c:if test="${pageCount le endPage}"></c:if> --%>
 				</ul>
 			</td>
 		</tr>
 	</table>
 </div>
 <script>
-	admin.main({
-		context : '${context}',
-		endPage : '${page.endPage}',
-		beginPage:'${page.beginPage}'
-	});
+
+//이전, 다음에서 json 쓰지 않기
+// class와 id 주는 것으로 해결하기
+//미완성
+	admin.main('${context}');
 </script>

@@ -6,11 +6,11 @@
 	<div id="wrapper">
 		<div id="header">
 			<jsp:include page="../common/titleBox.jsp" />
-			<jsp:include page="menuBox.jsp" />
+			<jsp:include page="../common/menuBox.jsp" />
 		</div>
 		<!-- header end -->
 		<div id="content">
-			<jsp:include page="contentBox.jsp" />
+			<jsp:include page="../member/search.jsp" />
 		</div>
 		<!-- content end -->
 		<div id="footer">
@@ -18,11 +18,7 @@
 		</div>
 	</div>
 	<script>
-		function move(domain, action, page) {
-			console.log('클릭 테스트 성공 ${context}');
-			alert('클릭 테스트 성공');
-			location.href = "${context}/" + domain + ".do?action=" + action + "&page=" + page;
-		}
+		admin.main('${context}');
 	</script>
 </body>
 </html>

@@ -12,7 +12,7 @@ public enum Term {
 			path="context";
 			break;
 		case WEBPATH:
-			path="WEB-INF/view";
+			path="WEB-INF/view/";
 			break;
 		case MAIN:
 			path="/main.jsp";

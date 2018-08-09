@@ -8,7 +8,7 @@ public class QueryFactory {
 	public static String createQuery(HashMap<String, Object> map) {
 		Query q = null;
 		switch (MemberQuery.valueOf(map.get("query").toString())) {
-		case COUNT_MEMBER:
+		case COUNT:
 			//q = new CountQuery();
 			break;
 		default:

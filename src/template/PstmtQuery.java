@@ -3,12 +3,13 @@ package template;
 import java.sql.ResultSet;
 import domain.MemberBean;
 import enums.Domain;
-import factory.DatabaseFactory;
-import factory.QueryFactory;
+import factory.*;
 
 public class PstmtQuery extends QueryTemplate {
 	@Override
 	void initialize() {
+		System.out.println("--10.PstmtQuery initialize");
+			
 		//factory사용
 		//map.put("sql", QueryFactory.createQuery(map));
 		if(map.get("value")==null) {

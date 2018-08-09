@@ -8,19 +8,7 @@ public class Commander{
 	public static Command order(HttpServletRequest request) {
 		Command cmd = null;   //cmd는 레퍼런스
 		switch (Action.valueOf(request.getParameter("action").toUpperCase())) {
-		case MOVE:
-			System.out.println("3. Commander MOVE 진입--");
-			cmd = new MoveCommand(request);  //cmd는 레퍼런스
-			break;
-		case JOIN:
-			System.out.println("3. Commander JOIN 진입--");
-			cmd = new CreateCommand(request);
-			break;
-		case LIST:
-			System.out.println("3. Commander LIST 진입--");
-			cmd =new ListCommand(request);
-			break;
-		case SEARCH:	
+		case SEARCH:
 			System.out.println("3. Commander SEARCH 진입--");
 			cmd =new SearchCommand(request);
 			break;
@@ -32,18 +20,27 @@ public class Commander{
 			System.out.println("3. Commander COUNT 진입--");
 			cmd=new CountCommand(request);
 			break;
-		case UPDATE:
+		case MODIFY:
 			System.out.println("3. Commander UPDATE 진입--");
-			cmd =new UpdateCommand(request);
+			cmd =new ModifyCommand(request);
 			break;
-		case DELETE:
+		case REMOVE:
 			System.out.println("3. Commander DELETE 진입--");
-			cmd =new DeleteCommand(request);
+			cmd =new RemoveCommand(request);
 			break;
 		case LOGIN:
 			System.out.println("3. Commander LOGIN 진입--");
 			cmd =new LoginCommand(request);
 			break;
+		case MOVE:
+			System.out.println("3. Commander MOVE 진입--");
+			cmd = new MoveCommand(request);  //cmd는 레퍼런스
+			break;
+		case JOIN:
+			System.out.println("3. Commander JOIN 진입--");
+			cmd = new AddCommand(request);
+			break;
+		
 		}
 		return cmd;  //cmd 죽음, 주소값은 남김
 	}

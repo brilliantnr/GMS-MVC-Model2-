@@ -13,16 +13,15 @@ public class Pagination implements proxy{
 	 @Override
 	public void carryOut(Object o) {
 		this.pageNum = (int) o;
-		this.memberCount = MemberServiceImpl.getInstance().countMember();
-		this.rowCount = MemberServiceImpl.getInstance().countMember(); // 게시물수
+		this.memberCount = MemberServiceImpl.getInstance().count();
+		this.rowCount = MemberServiceImpl.getInstance().count(); // 게시물수
 		this.blockSize = 5; // 1~5, 6~10
 		this.pageCount = (int) Math.ceil(rowCount / blockSize); // 총페이지수
-
-		this.blockNum=(int) Math.floor(beginPage / blockSize + 1) ;  //1~5->blockNum:1
 		
 		this.beginPage = (int) (Math.floor((pageNum - 1) / blockSize) * blockSize + 1);
+		this.blockNum=(int) Math.floor(beginPage / blockSize + 1) ;  //1~5->blockNum:1
 		this.endPage = (pageCount > blockNum * blockSize) ? blockNum * blockSize : pageCount;
-
+		
 		this.prevBlock = endPage - blockSize;
 		this.nextBlock = beginPage + blockSize;		
 		

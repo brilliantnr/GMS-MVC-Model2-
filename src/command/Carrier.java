@@ -10,7 +10,6 @@ public class Carrier { //캐리어는 명령보내는 일만 하는 클래스.
 		} catch (Exception e) {e.printStackTrace();}
 		
 		//receiver의 명령(cmd) 
-		//System.out.println() 도 패턴걸린것 . Sentry.cmd.getView()유사한 모양이지 
 		//view= "/WEB-INF/view/member/"+page+".jsp"
 		
 	}

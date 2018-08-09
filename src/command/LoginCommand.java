@@ -24,7 +24,7 @@ public class LoginCommand extends Command {
 		member.setPassword(request.getParameter("user-password"));
 		if(MemberServiceImpl.getInstance().login(member)) {
 			request.setAttribute("match", "TRUE");
-			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().findMemberId(member));  //request는 page단위로 살아있음. getSession은 브라우저 단위니까 붙여서 살아있기
+//			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().findMemberId(member));  //request는 page단위로 살아있음. getSession은 브라우저 단위니까 붙여서 살아있기
 			/*	request.setAttribute("user", MemberServiceImpl.getInstance().findMemberId(member));*/
 		}else {
 				request.setAttribute("match", "FALSE");

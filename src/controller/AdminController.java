@@ -20,12 +20,8 @@ public class AdminController extends HttpServlet {
 		Receiver.init(request);  //step1.
 		System.out.println("5. adminController 액션 : "+Receiver.cmd.getAction());
 		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
-		case MOVE:
-			System.out.println("5. adminController 무브 안으로 진입");
-			Carrier.forward(request, response); 
-			break;
-		case LIST:
-			System.out.println("5. adminController 관리자 LIST ");
+		case SEARCH:
+			System.out.println("5. adminController 관리자  SEARCH ");
 			Carrier.forward(request, response);
 			break;
 		case RETRIEVE:
@@ -33,13 +29,9 @@ public class AdminController extends HttpServlet {
 			Carrier.forward(request, response);
 			System.out.println("-------controller 아이디찾기 END -------");
 			break;
-		case SEARCH:
-			System.out.println("5. adminController 관리자  SEARCH ");
-			Carrier.forward(request, response);
-			break;
-		case COUNT:
-			Carrier.redirect(request, response, "/member.do?action=list&page=main&count="+request.getParameter("count")+"&listpage="+request.getParameter("listpage"));
-			System.out.println("-------controller 카운트 END-------");
+		case MOVE:
+			System.out.println("5. adminController 무브 안으로 진입");
+			Carrier.forward(request, response); 
 			break;
 		}
 	}
