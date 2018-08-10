@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<jsp:include page="../common/head.jsp"/>
-<body>
+<div id="contentBox">
 	<div id="user-login-layout">
 		<h1>사용자 로그인</h1>
 		<form id="user-login-form" > 
@@ -11,6 +8,7 @@
 			<input id="login_form_btn" type="button" value="전송" /> 
 		</form>
 	</div>
+</div>	
 	<script>
 	
 //5단계)JSON 사용(OOP)

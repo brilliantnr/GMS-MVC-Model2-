@@ -1,11 +1,7 @@
 package command;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
-
-import domain.MemberBean;
 import enums.Domain;
 import service.MemberServiceImpl;
 
@@ -15,7 +11,6 @@ public class ModifyCommand extends Command {
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
 		excute();
 	}
 	@Override
@@ -34,6 +29,11 @@ public class ModifyCommand extends Command {
 			map.put("password", request.getParameter("update_pw"));
 			map.put("teamId", request.getParameter("teamid"));
 			map.put("roll", request.getParameter("roll"));
+			
+			
+			map.put("column", 
+					request.getParameter("아직 미완성입니다"));
+			
 			MemberServiceImpl.getInstance().modify(map);
 			break;
 		default:

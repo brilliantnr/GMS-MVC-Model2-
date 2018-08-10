@@ -1,7 +1,6 @@
 package command;
 
 import javax.servlet.http.HttpServletRequest;
-
 import domain.*;
 import enums.*;
 import service.MemberServiceImpl;
@@ -11,7 +10,6 @@ public class AddCommand extends Command{
 		setRequest(request); 
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
-		setPage(request.getParameter("page"));
 		System.out.println("4. CreateCommand 액션, 페이지 : "+request.getParameter("action")+" / "+request.getParameter("page"));
 		this.excute();
 	}

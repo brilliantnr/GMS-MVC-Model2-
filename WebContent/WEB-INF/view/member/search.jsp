@@ -35,7 +35,7 @@
 			<td colspan="6">전체회원수 : ${memberCount}
 				<ul class="pageBox">
 					<c:if test="${page.existPrev}">
-						<li><a class="preBlock" id="${page.preBlock}" >◀이전</a></li>
+						<li><a id="${page.preBlock}" class="pageNum">◀이전</a></li>
 					</c:if>
 					<c:forEach begin="${page.beginPage}" end="${page.endPage}" step="1" varStatus="i">
 						<li>
@@ -43,7 +43,7 @@
 						</li>
 					</c:forEach>
 					<c:if test="${page.existNext}">
-						<li><a class="nextBlock" id="${page.nextBlock}">다음▶</a></li>
+						<li><a id="${page.nextBlock}" class="pageNum" >다음▶</a></li>
 					</c:if>
 				</ul>
 			</td>

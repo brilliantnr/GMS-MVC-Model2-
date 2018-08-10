@@ -8,6 +8,7 @@ public class PageProxy implements proxy {
 	
 	@Override
 	public void carryOut(Object o) {
+		System.out.println("--PageProxy");
 		this.pagination = new Pagination();
 		pagination.carryOut(o);
 	}

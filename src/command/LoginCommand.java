@@ -12,7 +12,7 @@ public class LoginCommand extends Command {
 		setRequest(request);  //커맨드리퀘스트가 담김
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));  //memberController를 먼저 통과해야하니까 request.로 받아야함
-		setPage("mypage");  //도착지 servlet이 결정하게하자. input에 hidden하지 않기 위해 <input type="hidden" name="page" value="mypage"/>
+		//setPage("mypage");  //도착지 servlet이 결정하게하자. input에 hidden하지 않기 위해 <input type="hidden" name="page" value="mypage"/>
 		excute();
 	}
 	@Override

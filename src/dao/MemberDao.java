@@ -5,7 +5,7 @@ import java.util.*;
 import domain.*;
 
 public interface MemberDao {
-	public void add(MemberBean member);
+	public void insert(MemberBean bean);
 	public List<MemberBean> selectSome(Map<?, ?>param);
 	public MemberBean selectOne(String id);
 	public int count();

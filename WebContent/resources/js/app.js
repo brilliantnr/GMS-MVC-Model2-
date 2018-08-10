@@ -38,7 +38,6 @@ var service = (()=>{
 	};
 })();
 
-
 var common = (()=>{
 	return{
 		main : x=>{
@@ -57,12 +56,7 @@ var common = (()=>{
 				}else{
 					alert('관리자만 접근이 허용됩니다');
 				}
-			
 			});
-		
-		
-		
-		
 		
 		
 		
@@ -72,24 +66,6 @@ var common = (()=>{
 
 var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것으로 막음. 디폴트와 같은 기능
 	return {
-		/*check : x=>{
-			var isAdmin = confirm('관리자입니까?');  //confirm은 window의 객체, window가 객체를 만드는 것을 bom, confirm은 bom의 메소드
-			if(isAdmin){  //if 조건문 안에 연산없으면 불린타입으로 리턴하는 것
-				var password = prompt('관리자비번을 입력바랍니다');
-				if(password == 1){
-					router.move({
-						context:x,  //admin.check("${context}");에서 x값 받으니까 x로 써야해
-						domain:"admin",
-						action:"list",  //list를 디폴트로 둘거라서
-						page:"main"
-					});
-				}
-			}else{
-				//boolean( NO인 경우)
-				alert('관리자만 접근이 허용됩니다');
-			}
-		},*/
-
 		main : x=>{  
 			service.addClass(
 					document.getElementById('search_box'),
@@ -116,11 +92,11 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 				var select = document.getElementById("search_box").value;
 				alert(select);
 				if(select==='userid'){
-					location.href=x.context+'/admin.do?action=retrieve&page=member_detail&userid='
+					location.href=x+'/admin.do?action=retrieve&page=member_detail&userid='
 					+document.getElementById('search_word').value;
 					alert('retrieve');
 				}else{
-					location.href=x.context+'/admin.do?action=search&page=main'+
+					location.href=x+'/admin.do?action=search&page=main'+
 							'&option='+document.getElementById("search_box").value+
 							'&word='+document.getElementById('search_word').value;
 					alert('search');
@@ -130,32 +106,42 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 			for(var i of document.querySelectorAll('.username')){
 				service.addClass(i,'cursor fontColorBlue');
 				i.addEventListener('click',function(){
-					location.href=x.context+'/admin.do?action=retrieve&page=member_detail&userid='+this.getAttribute('id');   //★★★★★★★
+					location.href=x+'/admin.do?action=retrieve&userid='+this.getAttribute('id');   //★★★★★★★
+					/*&page=member_detail*/
 				});
 			};
-			
-			if(document.getElementById('nextBlock')===null){}else{
-				document.getElementById('nextBlock').addEventListener('click',function(){
-					alert('다음▶ : '+(x.endPage*1+1));
-					location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.endPage*1+1);//JSON사용
+	
+			for(var i of document.querySelectorAll('.changeBlock')){
+				service.addClass(i,'cursor fontColorBlue');
+				i.addEventListener('click',function(){
+					location.href =x+"/admin.do?action=search&pageNum="+this.getAttribute('id');
 				});
-			};
-			
-			if(document.getElementById('preBlock')===null){}else{
-				document.getElementById('preBlock').addEventListener('click',function(){
-					alert('◀이전 : '+(x.beginPage*1-1));
-					location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.beginPage*1-1);
-				});
-			};
+			}
 			
 			for(var i of document.querySelectorAll('.pageNum')){
+				service.addClass(i,'cursor fontColorBlue');
 				i.addEventListener('click',function(){
-					service.addClass(i,'cursor fontColorBlue');
 					alert('pageNum'+this.getAttribute('id'));
-					location.href=x.context+'/admin.do?action=list&page=main&pageNum='+this.getAttribute('id');
+					location.href=x+'/admin.do?action=search&pageNum='+this.getAttribute('id');
+					/*&page=search*/
 				});
 			}; // jsp 에서는 for (i of object) 가 돌아가지 않습니다 ~_~ js파일로 옮겨주세용 !
-
+			
+			
+			
+			/*			if(document.getElementById('nextBlock')===null){}else{
+							document.getElementById('nextBlock').addEventListener('click',function(){
+								alert('다음▶ : '+(x.endPage*1+1));
+								location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.endPage*1+1);//JSON사용
+							});
+						};
+						
+						if(document.getElementById('preBlock')===null){}else{
+							document.getElementById('preBlock').addEventListener('click',function(){
+								alert('◀이전 : '+(x.beginPage*1-1));
+								location.href=x.context+'/admin.do?action=list&page=main&pageNum='+(x.beginPage*1-1);
+							});
+						};*/
 			//this 쓰려면 function(){} 으로 써야한다( ()=>{}이거는 node, AJAX에서 쓰이는 거라 안먹는다)
 			
 			//querySelectorAll은 클래스를 몽땅 뒤진다. 느림 (class이름을 줄때는 담기는 값이 많을때 쓰자)
@@ -263,6 +249,23 @@ var member = (()=> {
 
 
 
+/*check : x=>{
+var isAdmin = confirm('관리자입니까?');  //confirm은 window의 객체, window가 객체를 만드는 것을 bom, confirm은 bom의 메소드
+if(isAdmin){  //if 조건문 안에 연산없으면 불린타입으로 리턴하는 것
+	var password = prompt('관리자비번을 입력바랍니다');
+	if(password == 1){
+		router.move({
+			context:x,  //admin.check("${context}");에서 x값 받으니까 x로 써야해
+			domain:"admin",
+			action:"list",  //list를 디폴트로 둘거라서
+			page:"main"
+		});
+	}
+}else{
+	//boolean( NO인 경우)
+	alert('관리자만 접근이 허용됩니다');
+}
+},*/
 
 
 

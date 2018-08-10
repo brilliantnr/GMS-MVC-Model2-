@@ -12,8 +12,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public void add(MemberBean bean) {
-		// TODO Auto-generated method stub
-		
+		MemberDaoImpl.getInstance().insert(bean);
 	}
 	@Override
 	public List<MemberBean> search(Map<?, ?> param) {
@@ -21,28 +20,32 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public MemberBean retrieve(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberDaoImpl.getInstance().selectOne(id);
 	}
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberDaoImpl.getInstance().count();
 	}
 	@Override
 	public void modify(Map<?, ?> param) {
-		// TODO Auto-generated method stub
-		
+		MemberDaoImpl.getInstance().update(param);
 	}
 	@Override
 	public void remove(MemberBean bean) {
-		// TODO Auto-generated method stub
-		
+		MemberDaoImpl.getInstance().delete(bean);
 	}
 	@Override
 	public boolean login(MemberBean bean) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+        MemberBean mem = MemberDaoImpl.getInstance().login(bean);
+        System.out.println("----serviceImpl login : "+ mem);
+        if(mem != null) {
+             flag = true;
+        }else {
+             flag=false;
+        }
+        
+        return flag;
 	}
 	
 }

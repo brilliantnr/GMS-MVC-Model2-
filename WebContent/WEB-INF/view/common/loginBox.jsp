@@ -15,7 +15,6 @@
 					page : 'login'
 				});
 			});
-
 	document.getElementById('move_join_form').addEventListener('click', function() {
 				router.move({
 					context : '${context}',

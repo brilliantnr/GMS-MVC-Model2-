@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<head>
-<jsp:include page="../common/head.jsp" />
-<title>마이페이지 진입</title>
-</head>
-<body>
+<div id="contentBox">
 	<table id="mypage">
 		<tr>
 			<th>${user.name}의회원정보</th>
@@ -46,7 +40,7 @@
 	</table>
 		<a id="mypage_to_update"> 수정하기 </a>
 		<a id="mypage_to_delete"> 회원탈퇴하기 </a>
-
+</div>
 
 	<script>
 		//session 있음으로서 request.getParameter()쓸 필요없다.

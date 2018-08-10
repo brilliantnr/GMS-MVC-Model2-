@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<head>
-<jsp:include page="../common/head.jsp"/>
-<title>회원가입화면</title>
-</head>
-<body>
+<div id="contentBox">
 	<div id="join-form">
 		<form id="join_form_form" name="joinForm">
 		<h2>회원가입</h2>
@@ -45,6 +39,7 @@
 			<br /> 
 		</form>
 	</div>
+</div>
 	<script>
 	
 //5단계)JSON 사용(OOP)
