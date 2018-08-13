@@ -8,6 +8,7 @@ public class CountQuery extends QueryTemplate{
 
 	@Override
 	void initialize() {
+		System.out.println("--CountQuery 진입 : "+MemberQuery.COUNT.toString());
 		map.put("sql",MemberQuery.COUNT.toString());
 	}
 
@@ -18,16 +19,14 @@ public class CountQuery extends QueryTemplate{
 					.createDatabase2(map)
 					.getConnection()
 					.prepareStatement((String) map.get("sql"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 	@Override
 	void endPlay() {
 		try {
 			ResultSet rs = pstmt.executeQuery();
-			//rs.next() 반드시 사용해야한다
+			//rs.next() 반드시 사용해야한다 불린타입이므로 true,false 지정해야함
 			number = (rs.next())? rs.getInt("count") : 0;
 		} catch (Exception e) {e.printStackTrace();}
 		

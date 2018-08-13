@@ -1,7 +1,5 @@
 package template;
 
-import java.sql.SQLException;
-
 import domain.MemberBean;
 import enums.MemberQuery;
 
@@ -9,6 +7,7 @@ public class RemoveQuery extends QueryTemplate{
 
 	@Override
 	void initialize() {
+		System.out.println("--RemoveQuery 진입 ");
 		map.put("sql", MemberQuery.DELETE.toString());
 		/*"  DELETE "
 		+ " FROM MEMBER "

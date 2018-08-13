@@ -3,6 +3,7 @@
 
 .bgColorYellow{background-color: #ffff00}
 .bgColorLightGreen{background-color: #b3ffe0}
+.bgColorLightBlue{background-color: #addeff}
 
 .width80pt{width:80%}
 .width90pt{width:90%}
@@ -35,7 +36,7 @@
 	display: inline;
 }
 	
-	
+img{max-width: 250px}	
 	
 	
 	

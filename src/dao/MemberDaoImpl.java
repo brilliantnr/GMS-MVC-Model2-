@@ -38,15 +38,26 @@ public class MemberDaoImpl implements MemberDao{
         }
 		return list;
 	}
+	/*@Override
+	public List<MemberBean> selectSome(Map<?, ?> param) {
+		System.out.println("MemberDaoImpl selectSome --- ");
+		List<MemberBean> list = new ArrayList<>();
+        q= new SearchQuery();
+        q.play(param);
+        for(Object s : q.getList()) {
+             list.add((MemberBean) s);
+        }
+		return list;
+	}*/
 	@Override
 	public MemberBean selectOne(String id) {
 		System.out.println("MemberDaoImpl selectOne --- ");
 		HashMap<String, Object> map = new HashMap<>();
-		MemberBean m = new MemberBean();
 		q= new RetrieveQuery();
 		map.put("id", id);
 		q.play(map);
-		return m;
+		System.out.println("selectOne"+q.getO());
+		return (MemberBean) q.getO();
 	}
 	@Override
 	public int count() {
@@ -58,26 +69,27 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void update(Map<?, ?> param) {
 		System.out.println("MemberDaoImpl update --- ");
-		List<MemberBean> list = new ArrayList<>();
 		q=new ModifyQuery();
 		q.play(param);
-		for(Object s : q.getList()) {
-			list.add((MemberBean) s);
-		};
 	}
 	@Override
 	public void delete(MemberBean bean) {
 		System.out.println("MemberDaoImpl delete : ");
 		q=new RemoveQuery();
-		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("member", bean);
+		q.play(map);
 		
 	}
 	@Override
 	public MemberBean login(MemberBean bean) {
 		System.out.println("MemberDaoImpl login : ");
 		MemberBean m = null;
-		// TODO Auto-generated method stub
-		return m;
+		q=new LoginQuery();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("member",bean);
+		q.play(map);
+		return (MemberBean) q.getO();
 	}
 			
 

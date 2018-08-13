@@ -1,7 +1,5 @@
 package template;
 
-import java.sql.ResultSet;
-import domain.MemberBean;
 import enums.MemberQuery;
 import factory.DatabaseFactory;
 
@@ -9,7 +7,7 @@ public class ModifyQuery extends QueryTemplate{
 
 	@Override
 	void initialize() {
-		System.out.println("--ModifyQuery 진입 ");
+		System.out.println("--ModifyQuery 진입 : "+String.format(MemberQuery.UPDATE.toString(),map.get("column").toString()));
 		map.put("sql", 
 				String.format(MemberQuery.UPDATE.toString(),
 				map.get("column").toString()));  //command 담기
@@ -36,25 +34,8 @@ public class ModifyQuery extends QueryTemplate{
 	@Override
 	void endPlay() {
 		try {
-			ResultSet rs = pstmt.executeQuery();
-			MemberBean mem = null;
-			while(rs.next()) {
-				mem= new MemberBean();
-				mem.setAge(rs.getString("AGE"));
-				mem.setName(rs.getString("NAME"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setUserid(rs.getString("USERID"));
-				mem.setTeamId(rs.getString("TEAMID"));
-				mem.setGender(rs.getString("GENDER"));
-				mem.setSubject(rs.getString("SUBJECT"));
-				list.add(mem);
-				}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+			pstmt.executeUpdate();
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 }

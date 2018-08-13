@@ -2,7 +2,7 @@
 
 var router = (()=> {
 	return {move : x =>{
-		console.log('클릭 테스트 성공 ${context}');
+		console.log('router.move 클릭 테스트 성공 ${context}');
 		//JSON 이용
 		location.href =
 			x.context +"/" 
@@ -106,7 +106,7 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 			for(var i of document.querySelectorAll('.username')){
 				service.addClass(i,'cursor fontColorBlue');
 				i.addEventListener('click',function(){
-					location.href=x+'/admin.do?action=retrieve&userid='+this.getAttribute('id');   //★★★★★★★
+					location.href=x+'/member.do?action=retrieve&userid='+this.getAttribute('id');   //★★★★★★★
 					/*&page=member_detail*/
 				});
 			};
@@ -126,6 +126,12 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 					/*&page=search*/
 				});
 			}; // jsp 에서는 for (i of object) 가 돌아가지 않습니다 ~_~ js파일로 옮겨주세용 !
+			
+			
+			
+			
+			
+			
 			
 			
 			

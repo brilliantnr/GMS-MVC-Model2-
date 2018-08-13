@@ -18,19 +18,13 @@ public class Pagination implements proxy{
 		this.rowCount = MemberServiceImpl.getInstance().count(); // 게시물수
 		this.blockSize = 5; // 1~5, 6~10
 		this.pageCount = (int) Math.ceil(rowCount / blockSize); // 총페이지수
-		System.out.println("	Pagination carryOut");
-		System.out.println("pageNum : "+pageNum);
-		System.out.println("memberCount : "+memberCount);
+		System.out.println("4-1. Pagination carryOut");
 		this.beginPage = (int) (Math.floor((pageNum - 1) / blockSize) * blockSize + 1);
 		this.blockNum=(int) Math.floor(beginPage / blockSize + 1) ;  //1~5->blockNum:1
 		this.endPage = (pageCount > blockNum * blockSize) ? blockNum * blockSize : pageCount;
 		
 		this.prevBlock = endPage - blockSize;
 		this.nextBlock = beginPage + blockSize;		
-		
-		System.out.println("endPage"+endPage);
-		System.out.println("prevBlock"+prevBlock);
-		
 		this.beginRow = (pageNum - 1) * blockSize + 1;
 		this.endRow = pageNum * blockSize;
 		this.existPrev = false;

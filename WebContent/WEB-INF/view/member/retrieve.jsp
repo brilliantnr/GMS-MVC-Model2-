@@ -7,7 +7,7 @@
 		<tr>
 			<td>이름</td>
 			<td>${user.name}</td>
-			<td rowspan="3">picture.jpg</td>
+			<td rowspan="3"><img src="resources/img/home/cat.jpg" alt="이미지"></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
@@ -63,7 +63,8 @@
 				action:'move',
 				page:'remove'});
 		});
+		
+		
 	</script>
-
 </body>
 </html>

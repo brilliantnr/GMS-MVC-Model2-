@@ -1,9 +1,7 @@
 package command;
 
 import java.util.*;
-
 import javax.servlet.http.HttpServletRequest;
-
 import domain.*;
 import proxy.*;
 import service.*;
@@ -25,8 +23,7 @@ public class SearchCommand extends Command {
 		int pn = (pageNum == null) ? 1 : Integer.parseInt(pageNum);
 		pxy.carryOut(pn);
 		
-		System.out.println("4.	SearchCommand 진입");
-		System.out.println("	SearchCommand pn : "+pn);
+		System.out.println("4.SearchCommand 진입");
 		
 		Pagination page = pxy.getPagination();
 		String[] arr1 = {"domain","beginRow","endRow"};

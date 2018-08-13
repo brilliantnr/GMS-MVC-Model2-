@@ -1,10 +1,24 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
+
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 
 import command.*;
 import enums.*;
@@ -31,7 +45,7 @@ public class MemberController extends HttpServlet {
 			System.out.println("-------controller 아이디찾기 END -------");
 			break;
 		case MODIFY:
-			Carrier.forward(request, response);
+			Carrier.redirect(request, response,"/member.do?action=retrieve");
 			System.out.println("-------controller 비번변경 END-------");
 			break;
 		case REMOVE:
@@ -49,13 +63,55 @@ public class MemberController extends HttpServlet {
 				Carrier.forward(request, response);
 				System.out.println("-------controller 로그인 END------- ");
 			}else {
-				Carrier.redirect(request, response, "/member.do?action=move&page=user_login_form");
+				System.out.println("controller 로그인 redirect ");
+				Carrier.redirect(request, response, "/member.do?action=move&page=login");
 			}
 			break;
  		case JOIN:
 			System.out.println("5. con  JOIN--");
 			Carrier.redirect(request, response,"");
 			System.out.println("-------controller JOIN 결과  END-------");
+			break;
+ 		case FILEUPLOAD:
+			System.out.println("5. con  FILEUPLOAD 1/ 파일업로드 진입");
+			if(!ServletFileUpload.isMultipartContent(request)) {//!있으면
+				System.out.println("업로드파일이 없습니다.");
+				return;
+			}
+			System.out.println("FILEUPLOAD 2/ 업로드 파일 존재함");
+			
+			FileItemFactory factory = new  DiskFileItemFactory();
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			upload.setFileSizeMax(1024*1024*40);//40MB
+			upload.setSizeMax(1024*1024*50);//50MB
+			List<FileItem> items = null;
+			final String PATH = "C:\\Users\\1027\\Documents\\sample.txt";//업로드// \가 앞에 붙는 건 뒤에것을 인식해라라는 명령 ex)\n
+			try {
+				System.out.println("FILEUPLOAD 3/ 내부 진입");
+				File file = null;
+				items = upload.parseRequest(new ServletRequestContext(request));
+				System.out.println("FILEUPLOAD 4/ items 생성");
+				Iterator<FileItem> iter = items.iterator();
+				while(iter.hasNext()) {
+					System.out.println("FILEUPLOAD 5/ while 진입");
+					FileItem item = iter.next();
+					if(!item.isFormField()) {
+						System.out.println("FILEUPLOAD 6/ if 진입");
+						String fieldName = item.getFieldName();
+						String fileName = item.getName();
+						boolean ilInMemory = item.isInMemory();
+						long sizeInBytes = item.getSize();
+						file = new File(fileName);
+						item.write(file);
+						System.out.println("FILEUPLOAD 7/ 파일 업로드 성공");
+					}else {
+						System.out.println("FILEUPLOAD 8/ 파일 업로드 실패");
+					}
+				}
+			} catch (Exception e) {e.printStackTrace();} 
+			
+			Carrier.redirect(request, response,"/member.do?action=retrieve");
+			System.out.println("-------controller FILEUPLOAD 결과  END-------");
 			break;
 		default:
 			Carrier.redirect(request, response, "");

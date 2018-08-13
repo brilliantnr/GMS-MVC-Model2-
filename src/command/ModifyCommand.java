@@ -17,6 +17,7 @@ public class ModifyCommand extends Command {
 	public void excute() {
 		switch (Domain.valueOf(domain.toUpperCase())) {
 		case MEMBER:
+			System.out.println("ModifyCommand  excute ");
 			/*MemberBean member =new MemberBean();
 			member = (MemberBean) request.getSession().getAttribute("user");
 			System.out.println("---updateCommand 전\n :"+member);

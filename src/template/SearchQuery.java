@@ -3,7 +3,6 @@ package template;
 import java.sql.ResultSet;
 import domain.MemberBean;
 import enums.MemberQuery;
-import factory.DatabaseFactory;
 
 public class SearchQuery extends QueryTemplate{
 
@@ -48,7 +47,7 @@ public class SearchQuery extends QueryTemplate{
 	@Override
 	void endPlay() {
 		try {
-			ResultSet rs  = pstmt.executeQuery();
+			ResultSet rs  = pstmt.executeQuery();//리턴타입 있을 경우 resultSet 사용(DB에서 꺼내오는 수도꼭지)
 			MemberBean mem = null;
 			while(rs.next()) {
 				mem= new MemberBean();
@@ -61,11 +60,9 @@ public class SearchQuery extends QueryTemplate{
 				mem.setTeamId(rs.getString("TEAMID"));
 				mem.setGender(rs.getString("GENDER"));
 				mem.setSubject(rs.getString("SUBJECT"));
-				list.add(mem);
+				list.add(mem);  //리턴타입 List
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {e.printStackTrace();}
 		
 	}
 

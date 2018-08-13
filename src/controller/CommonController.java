@@ -10,9 +10,7 @@ import enums.Term;
 @WebServlet("/common.do")
 public class CommonController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	enum Resources{ 
-		CONTEXT, CSS, JS, IMG
-	}  
+	enum Resources{CONTEXT, CSS, JS, IMG}//커먼컨트롤러 움직일때 한번만 쓰는 거라 이너클래스 형태로 만든 것.  
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int i = 0;

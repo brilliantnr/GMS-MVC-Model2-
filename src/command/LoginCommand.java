@@ -17,7 +17,7 @@ public class LoginCommand extends Command {
 	}
 	@Override
 	public void excute() {
-		
+		System.out.println("LoginCommand  excute ");
 		super.excute();
 		MemberBean member = new MemberBean();
 		member.setUserid(request.getParameter("user-id"));

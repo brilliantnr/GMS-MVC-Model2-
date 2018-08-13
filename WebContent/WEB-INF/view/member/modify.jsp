@@ -16,7 +16,7 @@
 		<tr>
 			<td>이름</td>
 			<td>${user.name}</td>
-			<td rowspan="3">picture.jpg</td>
+			<td rowspan="3"><img src="resources/img/home/cat.jpg" alt="이미지"></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
@@ -64,14 +64,18 @@
 		<input id="update_form_btn" type="button" value="회원정보 수정완료" /> 
 	</form>
 </div>
+<form method="POST" enctype="multipart/form-data" action="${context}/member.do?action=fileupload&page=retrieve">
+파일 업로드: <input type="file" name="upfile"><br/>
+			<input type="submit" name="파일업로드"><br/>
+			<!-- 
+			<input type="hidden" name="action" value="fileupload">
+			<input type="hidden" name="page" value="retrieve"> 
+			-->
+</form>
 	<script>
-	//DOM 객체 - document의 object로 만든 객체
-	// BOM 객체 : location은 window(브라우저)의 것
-	//jsp와 서블릿에서의 객체 = 
 	var form = document.getElementById('update_form');
 	var team = document.getElementById('teamid');
 	var roll = document.getElementById('roll');
-	//form과 team 자동으로 dom객체
 	for(var i=0; i<team.options.length;i++){
 		//alert('---'+team.options[i].value+'와 같다!');		
 		if(team.options[i].value==='${user.teamId}'){   //loginCommand에서 user를 memberBean으로 지정
@@ -87,7 +91,7 @@
 			roll.options[i].setAttribute("selected","selected");
 		}
 	}
-	
+		
 	
 	
 		document.getElementById('update_form_btn').addEventListener('click',
@@ -101,56 +105,8 @@
 				form.method="post";
 				form.submit();
 				});
+		
+		
 	</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<script>
-	
-	
-	
-	
-	
-	
-	/*<form action="${context}/member.do" onsubmit="return sendForm()" method="get" >
-		<h3>비밀번호 변경</h3>
-		아이디 입력 <br> <input type="text" name="update-check-id" /><br />
-		기존 비밀번호 입력 <br> <input type="text" name="update-old-password" /><br />
-		새로운 비밀번호 입력 <br> <input type="text" name="update-new-password" /><br />
-		<input id="update_form_btn" type="button" value="회원정보 수정완료" /> 
-		<input type="hidden" name="action" value="update" /> 
-		<input type="hidden" name="page" value="mypage" />
-		</form>
-	 */
-	/* function sendForm() {
-		alert('--sendForm 통과--');
-		return true;
-	} */
-</script>
 </body>
 </html>
-
-

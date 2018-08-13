@@ -21,8 +21,8 @@ public class RetrieveCommand extends Command {
 			MemberBean member = new MemberBean();
 			member.setName(request.getParameter("search-id-name"));
 			member.setSsn(request.getParameter("search-id-birth"));
-			System.out.println("--RetrieveCommand  : "+member);
-			//request.setAttribute("retrieve", MemberServiceImpl.getInstance().retrieve(member));
+			System.out.println("--RetrieveCommand  : ID : "+request.getParameter("userid"));
+			request.setAttribute("user", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
 			break;
 		case ADMIN:
 			MemberBean mem = new MemberBean();

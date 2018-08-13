@@ -1,14 +1,13 @@
 package template;
 
-import java.sql.ResultSet;
 import domain.MemberBean;
 import enums.MemberQuery;
-import factory.DatabaseFactory;
 
 public class AddQuery extends QueryTemplate{
 
 	@Override
 	void initialize() {
+		System.out.println("--AddQuery 진입 : "+MemberQuery.INSERT.toString());
 		map.put("sql", MemberQuery.INSERT.toString());
 	}
 	@Override
@@ -34,25 +33,8 @@ public class AddQuery extends QueryTemplate{
 
 	@Override
 	void endPlay() {
-		try {
-			ResultSet rs  = pstmt.executeQuery();
-			MemberBean mem = null;
-			while(rs.next()) {
-				mem= new MemberBean();
-				mem.setAge(rs.getString("AGE"));
-				mem.setName(rs.getString("NAME"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setUserid(rs.getString("USERID"));
-				mem.setTeamId(rs.getString("TEAMID"));
-				mem.setGender(rs.getString("GENDER"));
-				mem.setSubject(rs.getString("SUBJECT"));
-				list.add(mem);  //super.list.add(mem);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			try {
+				pstmt.executeUpdate();//void리턴타입
+			} catch (Exception e) {e.printStackTrace();}
 	}
-
 }

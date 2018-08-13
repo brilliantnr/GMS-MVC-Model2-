@@ -40,6 +40,10 @@ public class Commander{
 			System.out.println("3. Commander JOIN 진입--");
 			cmd = new AddCommand(request);
 			break;
+		case FILEUPLOAD:
+			System.out.println("3. Commander FILEUPLOAD 진입--");
+			cmd = new FileCommand(request);
+			break;
 		
 		}
 		return cmd;  //cmd 죽음, 주소값은 남김

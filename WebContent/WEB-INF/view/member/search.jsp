@@ -54,6 +54,5 @@
 
 //이전, 다음에서 json 쓰지 않기
 // class와 id 주는 것으로 해결하기
-//미완성
 	admin.main('${context}');
 </script>

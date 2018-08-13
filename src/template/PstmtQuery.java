@@ -14,7 +14,7 @@ public class PstmtQuery extends QueryTemplate {
 
 
 //각 메소드별 쿼리 생성하기 전
-/*@Overrideㄹ
+/*@Override
 void initialize() {
 	System.out.println("--10.PstmtQuery initialize");
 	//factory사용

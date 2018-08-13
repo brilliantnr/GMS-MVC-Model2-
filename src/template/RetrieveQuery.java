@@ -3,7 +3,6 @@ package template;
 import java.sql.ResultSet;
 import domain.MemberBean;
 import enums.MemberQuery;
-import factory.DatabaseFactory;
 
 public class RetrieveQuery extends QueryTemplate{
 
@@ -48,8 +47,8 @@ public class RetrieveQuery extends QueryTemplate{
 				mem.setTeamId(rs.getString("TEAMID"));
 				mem.setGender(rs.getString("GENDER"));
 				mem.setSubject(rs.getString("SUBJECT"));
-				list.add(mem);  //super.list.add(mem);
 			}
+			o=mem;
 		} catch (Exception e) {e.printStackTrace();}
 	}
 }
