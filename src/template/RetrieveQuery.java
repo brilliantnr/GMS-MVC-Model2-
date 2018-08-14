@@ -2,53 +2,90 @@ package template;
 
 import java.sql.ResultSet;
 import domain.MemberBean;
+import enums.ImageQuery;
 import enums.MemberQuery;
 
-public class RetrieveQuery extends QueryTemplate{
+public class RetrieveQuery extends QueryTemplate {
 
 	@Override
 	void initialize() {
-		System.out.println("--RetrieveQuery 진입 ");
-		map.put("sql", MemberQuery.RETRIEVE.toString());
-		/*" SELECT "
-		+ ColumnFinder.find(Domain.MEMBER)
-		+ " FROM MEMBER " 
-		+ " WHERE USERID LIKE ? "*/
+		switch (map.get("table").toString()) {
+		case "MEMBER":
+			System.out.println("--RetrieveQuery -MEMBER진입 ");
+			map.put("sql", MemberQuery.RETRIEVE.toString());
+			/*
+			 * " SELECT " + ColumnFinder.find(Domain.MEMBER) + " FROM MEMBER " +
+			 * " WHERE USERID LIKE ? "
+			 */
+			break;
+		case "IMAGE":
+			System.out.println("--RetrieveQuery -IMAGE진입1 ");
+			map.put("sql", ImageQuery.RETRIEVE.toString());
+			break;
+		default:
+			break;
+		}
+
 	}
-	
+
 	@Override
 	void startPlay() {
-		try {
-			/*pstmt=DatabaseFactory
-					.createDatabase2(map)
-					.getConnection()
-					.prepareStatement((String) map.get("sql"));*/
-			
-			String id = (String) map.get("id");
-			System.out.println("RetrieveQuery id : "+id);
-			pstmt.setString(1, id);
-		} catch (Exception e) {e.printStackTrace();}
-		
+		switch (map.get("table").toString()) {
+		case "MEMBER":
+			try {
+				String id = (String) map.get("id");
+				System.out.println("RetrieveQuery id : " + id);
+				pstmt.setString(1, id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		case "IMAGE":
+			try {
+				System.out.println("RetrieveQuery IMAGE 진입2");
+				pstmt.setString(1, (String) map.get("userid"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override
 	void endPlay() {
-		try {
-			ResultSet rs = pstmt.executeQuery();
-			MemberBean mem = null;
-			while(rs.next()) {
-				mem= new MemberBean();
-				mem.setAge(rs.getString("AGE"));
-				mem.setName(rs.getString("NAME"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setUserid(rs.getString("USERID"));
-				mem.setTeamId(rs.getString("TEAMID"));
-				mem.setGender(rs.getString("GENDER"));
-				mem.setSubject(rs.getString("SUBJECT"));
+		switch (map.get("table").toString()) {
+		case "MEMBER":
+			try {
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
+					((MemberBean) o).setAge(rs.getString("AGE"));
+					((MemberBean) o).setName(rs.getString("NAME"));
+					((MemberBean) o).setPassword(rs.getString("PASSWORD"));
+					((MemberBean) o).setRoll(rs.getString("ROLL"));
+					((MemberBean) o).setSsn(rs.getString("SSN"));
+					((MemberBean) o).setUserid(rs.getString("USERID"));
+					((MemberBean) o).setTeamId(rs.getString("TEAMID"));
+					((MemberBean) o).setGender(rs.getString("GENDER"));
+					((MemberBean) o).setSubject(rs.getString("SUBJECT"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			o=mem;
-		} catch (Exception e) {e.printStackTrace();}
+			break;
+		case "IMAGE":
+			try {
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()) {
+					((MemberBean) o).setUserid(rs.getString("USERID"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }

@@ -1,7 +1,7 @@
 package enums;
 
-public enum Term {
-	CONTEXT, WEBPATH, MAIN 
+public enum Path {
+	CONTEXT, WEBPATH, MAIN ,UPLOAD_PATH
 	;
 	
 	@Override
@@ -16,6 +16,9 @@ public enum Term {
 			break;
 		case MAIN:
 			path="/main.jsp";
+			break;
+		case UPLOAD_PATH:
+			path="C:\\Users\\1027\\JavaWorkSpace\\jeeworkspace\\GMS-MVC\\WebContent\\resources\\img\\upload\\";
 			break;
 		}
 		return path;

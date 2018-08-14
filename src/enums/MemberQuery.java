@@ -12,7 +12,8 @@ public enum MemberQuery {
 	LIST, SEARCH, RETRIEVE, COUNT,
 	UPDATE,
 	DELETE,
-	LOGIN,;
+	LOGIN
+	;
 
 	//템플릿패턴했을때의 쿼리
 	

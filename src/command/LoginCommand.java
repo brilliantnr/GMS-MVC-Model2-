@@ -1,5 +1,7 @@
 package command;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import domain.*;
@@ -12,25 +14,36 @@ public class LoginCommand extends Command {
 		setRequest(request);  //커맨드리퀘스트가 담김
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));  //memberController를 먼저 통과해야하니까 request.로 받아야함
-		//setPage("mypage");  //도착지 servlet이 결정하게하자. input에 hidden하지 않기 위해 <input type="hidden" name="page" value="mypage"/>
 		excute();
 	}
 	@Override
 	public void excute() {
 		System.out.println("LoginCommand  excute ");
-		super.excute();
+		request.setAttribute("pagename", request.getParameter("page"));
 		MemberBean member = new MemberBean();
 		member.setUserid(request.getParameter("user-id"));
 		member.setPassword(request.getParameter("user-password"));
 		if(MemberServiceImpl.getInstance().login(member)) {
 			request.setAttribute("match", "TRUE");
-//			request.getSession().setAttribute("user", MemberServiceImpl.getInstance().findMemberId(member));  //request는 page단위로 살아있음. getSession은 브라우저 단위니까 붙여서 살아있기
-			/*	request.setAttribute("user", MemberServiceImpl.getInstance().findMemberId(member));*/
+			System.out.println("LoginCommand 로그인 성공");
+			request.getSession().setAttribute(
+					"user"
+					, MemberServiceImpl.getInstance().retrieve(member.getUserid()));
 		}else {
 				request.setAttribute("match", "FALSE");
+				System.out.println("LoginCommand 로그인 실패");
 			}
+		super.excute();
 	}
 }
+
+
+
+
+
+
+
+
 
 
 /*
@@ -52,4 +65,7 @@ setPage("mypage");	//<-도착지 servlet이 결정하게하고 input삭제
 
 */
 
+//setPage("mypage");  //도착지 servlet이 결정하게하자. input에 hidden하지 않기 위해 <input type="hidden" name="page" value="mypage"/>
 
+
+//request는 page단위로 살아있음. getSession은 브라우저 단위니까 붙여서 살아있기

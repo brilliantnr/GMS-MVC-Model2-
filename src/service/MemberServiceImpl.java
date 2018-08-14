@@ -38,8 +38,8 @@ public class MemberServiceImpl implements MemberService{
 	public boolean login(MemberBean bean) {
 		boolean flag = false;
         MemberBean mem = MemberDaoImpl.getInstance().login(bean);
-        System.out.println("----serviceImpl login : "+ mem);
-        if(mem != null) {
+        System.out.println("----serviceImpl login : "+ mem.getUserid());
+        if(mem.getUserid()!=null) {
              flag = true;
         }else {
              flag=false;

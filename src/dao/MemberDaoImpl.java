@@ -24,6 +24,7 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println("MemberDaoImpl insert --- ");
 		q=new AddQuery();
 		HashMap<String, Object> map = new HashMap<>();
+		map.put("table", Domain.MEMBER);
 		map.put("member", bean);
 		q.play(map);
 	}
@@ -32,7 +33,9 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println("MemberDaoImpl selectSome --- ");
 		List<MemberBean> list = new ArrayList<>();
         q= new SearchQuery();
-        q.play(param);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("table", Domain.MEMBER);
+        q.play(map);
         for(Object s : q.getList()) {
              list.add((MemberBean) s);
         }
@@ -54,9 +57,10 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println("MemberDaoImpl selectOne --- ");
 		HashMap<String, Object> map = new HashMap<>();
 		q= new RetrieveQuery();
+		map.put("table",Domain.MEMBER);
 		map.put("id", id);
 		q.play(map);
-		System.out.println("selectOne"+q.getO());
+		System.out.println("MemberDaoImpl selectOne : "+q.getO());
 		return (MemberBean) q.getO();
 	}
 	@Override
@@ -70,13 +74,16 @@ public class MemberDaoImpl implements MemberDao{
 	public void update(Map<?, ?> param) {
 		System.out.println("MemberDaoImpl update --- ");
 		q=new ModifyQuery();
-		q.play(param);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("table",Domain.MEMBER);
+		q.play(map);
 	}
 	@Override
 	public void delete(MemberBean bean) {
 		System.out.println("MemberDaoImpl delete : ");
 		q=new RemoveQuery();
 		HashMap<String, Object> map = new HashMap<>();
+		map.put("table",Domain.MEMBER);
 		map.put("member", bean);
 		q.play(map);
 		
@@ -84,9 +91,9 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public MemberBean login(MemberBean bean) {
 		System.out.println("MemberDaoImpl login : ");
-		MemberBean m = null;
 		q=new LoginQuery();
 		HashMap<String, Object> map = new HashMap<>();
+		map.put("table",Domain.MEMBER);
 		map.put("member",bean);
 		q.play(map);
 		return (MemberBean) q.getO();

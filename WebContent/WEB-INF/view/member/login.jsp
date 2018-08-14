@@ -23,6 +23,12 @@
 				node.setAttribute('name','action');
 				node.setAttribute('value','login');
 				form.appendChild(node);
+				
+				var node1 = document.createElement('input');  //<input type="hidden" name="action" value="login"/>	
+				node1.setAttribute('type','hidden');
+				node1.setAttribute('name','page');
+				node1.setAttribute('value','retrieve');
+				form.appendChild(node1);
 			form.submit();
 		}else {
 			alert(x.text);

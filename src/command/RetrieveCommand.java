@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import domain.*;
 import enums.*;
+import service.ImageServiceImpl;
 import service.MemberServiceImpl;
 
 public class RetrieveCommand extends Command {
@@ -21,8 +22,20 @@ public class RetrieveCommand extends Command {
 			MemberBean member = new MemberBean();
 			member.setName(request.getParameter("search-id-name"));
 			member.setSsn(request.getParameter("search-id-birth"));
-			System.out.println("--RetrieveCommand  : ID : "+request.getParameter("userid"));
-			request.setAttribute("user", MemberServiceImpl.getInstance().retrieve(request.getParameter("userid")));
+			
+			String userid =((MemberBean)request.getSession().getAttribute("user")).getUserid();
+			
+			System.out.println("--RetrieveCommand   ID : "+userid);
+			request.setAttribute("user", MemberServiceImpl.getInstance().retrieve(userid));
+			
+			
+			ImageBean image = ImageServiceImpl.getinstance().retrieve(userid);
+			
+			
+			String imgPath ="/upload/"+image.getImgname()+"."+image.getExtension();
+			System.out.println("경로 : "+imgPath);
+			request.setAttribute("imgPath", imgPath);
+			
 			break;
 		case ADMIN:
 			MemberBean mem = new MemberBean();

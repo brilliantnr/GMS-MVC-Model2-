@@ -2,12 +2,14 @@
 <div id="contentBox">
 	<table id="mypage">
 		<tr>
-			<th>${user.name}의회원정보</th>
+			<th>${user.name}의  회원정보</th>
 		</tr>
 		<tr>
 			<td>이름</td>
 			<td>${user.name}</td>
-			<td rowspan="3"><img src="resources/img/home/cat.jpg" alt="이미지"></td>
+			<td id="mypageImg" rowspan="3">
+				<img src="${img}/${imgPath}" alt="이미지">
+			</td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>

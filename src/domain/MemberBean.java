@@ -4,10 +4,9 @@ import lombok.Data;
 
 @Data
 public class MemberBean {
-	private String userid,name, ssn,password,
+	private 
+	String userid,name, ssn,password,
 	teamId,roll,gender,age, 
-	subject;
-
-	
-	
+	subject
+	;
 }
