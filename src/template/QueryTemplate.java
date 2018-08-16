@@ -28,10 +28,10 @@ public abstract class QueryTemplate {
 		this.pstmt=null;
 		
 		this.map.put("vendor", Vendor.ORACLE);
-		this.map.put("username", DBConstant.USERNAME);
+		this.map.put("username", DBConstant.USERNAME); 
 		this.map.put("password", DBConstant.PASSWORD);
 		
-		//Iterator 패턴 ★★★
+		//Iterator 패턴 ★★★ (Map<?, ?> param 을 바로 Map<String, Object> map에 담을 수 없어서 하나하나 담는다.)
 		Iterator<?> keys = param.keySet().iterator();
 		while (keys.hasNext()) {
 			String key = (String) keys.next();

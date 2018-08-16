@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<!doctype html>
-<html lang="en">
-<head>
-<jsp:include page="../common/head.jsp"/>
-<title>회원정보 수정하기</title>
-</head>
-<body>
+<div id="contentBox">
 <div>
 	<form id="update_form" name="update_form">
 	<table id="mypage">
@@ -64,6 +57,7 @@
 		<input id="update_form_btn" type="button" value="회원정보 수정완료" /> 
 	</form>
 </div>
+</div> <!-- content -->
 <form method="POST" enctype="multipart/form-data" action="${context}/member.do?action=fileupload&page=retrieve">
 파일 업로드: <input type="file" name="upfile"><br/>
 			<input type="submit" name="파일업로드"><br/>
@@ -72,6 +66,7 @@
 			<input type="hidden" name="page" value="retrieve"> 
 			-->
 </form>
+
 	<script>
 	var form = document.getElementById('update_form');
 	var team = document.getElementById('teamid');

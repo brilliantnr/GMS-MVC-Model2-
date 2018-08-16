@@ -24,10 +24,15 @@ public enum ImageQuery {
 					;
 			break;
 		case RETRIEVE:
-			query = " SELECT "
-					+ ColumnFinder.find(Domain.IMAGE)
-					+ " FROM IMAGE "
-					+ " WHERE USERID LIKE ? "
+			query = " SELECT * " + 
+					"FROM " + 
+					"( " + 
+					" SELECT * " + 
+					" FROM IMAGE " + 
+					" WHERE USERID LIKE ? " + 
+					" ORDER BY IMG_SEQ DESC " + 
+					") " + 
+					"WHERE ROWNUM = 1 "
 					;
 			break;
 		case UPDATE:

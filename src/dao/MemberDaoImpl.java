@@ -1,11 +1,8 @@
 package dao;
 
-import java.sql.*;
 import java.util.*;
 import domain.*;
 import enums.*;
-import factory.*;
-import pool.DBConstant;
 import template.*;
 import template.CountQuery;
 //★ MemberQuery.LOGIN.toString() <- Enum 사용 
@@ -33,7 +30,7 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println("MemberDaoImpl selectSome --- ");
 		List<MemberBean> list = new ArrayList<>();
         q= new SearchQuery();
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, Object> map = (HashMap<String, Object>) param;//★★★★★  new hashMap 하면 기존에 가져온 param 버리는 거다
         map.put("table", Domain.MEMBER);
         q.play(map);
         for(Object s : q.getList()) {
@@ -59,6 +56,7 @@ public class MemberDaoImpl implements MemberDao{
 		q= new RetrieveQuery();
 		map.put("table",Domain.MEMBER);
 		map.put("id", id);
+		System.out.println("MemberDaoImpl selectOne : "+map.get("table")+" / map.id : "+map.get("id"));
 		q.play(map);
 		System.out.println("MemberDaoImpl selectOne : "+q.getO());
 		return (MemberBean) q.getO();
@@ -74,7 +72,7 @@ public class MemberDaoImpl implements MemberDao{
 	public void update(Map<?, ?> param) {
 		System.out.println("MemberDaoImpl update --- ");
 		q=new ModifyQuery();
-		HashMap<String, Object> map = new HashMap<>();
+		HashMap<String, Object> map =  (HashMap<String, Object>) param;
 		map.put("table",Domain.MEMBER);
 		q.play(map);
 	}

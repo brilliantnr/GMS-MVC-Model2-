@@ -2,7 +2,6 @@ package template;
 
 import java.sql.ResultSet;
 import enums.MemberQuery;
-import factory.DatabaseFactory;
 
 public class CountQuery extends QueryTemplate{
 
@@ -14,12 +13,12 @@ public class CountQuery extends QueryTemplate{
 
 	@Override
 	void startPlay() {
-		try {
+		/*try {
 			pstmt = DatabaseFactory
 					.createDatabase2(map)
 					.getConnection()
 					.prepareStatement((String) map.get("sql"));
-		} catch (Exception e) {e.printStackTrace();}
+		} catch (Exception e) {e.printStackTrace();}*/
 	}
 
 	@Override

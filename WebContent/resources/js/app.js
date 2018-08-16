@@ -3,7 +3,6 @@
 var router = (()=> {
 	return {move : x =>{
 		console.log('router.move 클릭 테스트 성공 ${context}');
-		//JSON 이용
 		location.href =
 			x.context +"/" 
 			+  x.domain 
@@ -155,6 +154,47 @@ var admin=(()=>{   //생성자함수처럼 쓰이는 밖의 것은, 없는 것�
 	
          }
 };})();
+
+var members = (()=>{
+	return{
+		main: x=>{
+			
+			
+			//==== add =====
+			
+			
+			//==== login =====
+			/*
+			document.getElementById('login_form_btn').addEventListener('click',function(){
+				var form = document.getElementById('user-login-form');
+				var x = service.nullChecker([ form.user_id.value, form.user_password.value ]);  
+				if(x.checker){
+					form.action = "${context}/member.do";  
+					form.method = "post";
+					var node = document.createElement('input');  //<input type="hidden" name="action" value="login"/>	
+						node.setAttribute('type','hidden');
+						node.setAttribute('name','action');
+						node.setAttribute('value','login');
+						form.appendChild(node);
+						
+						var node1 = document.createElement('input');  //<input type="hidden" name="action" value="login"/>	
+						node1.setAttribute('type','hidden');
+						node1.setAttribute('name','page');
+						node1.setAttribute('value','retrieve');
+						form.appendChild(node1);
+					form.submit();
+				}else {
+					alert(x.text);
+				}
+			});
+			*/
+			//==== login =====
+			
+			
+		}
+	}
+})();
+
 
 
 

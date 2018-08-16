@@ -62,6 +62,14 @@ public class MemberController extends HttpServlet {
 				Carrier.redirect(request, response, "/member.do?action=move&page=login");
 			}
 			break;
+ 		case LOGOUT: 
+ 			System.out.println("5. con 로그아웃 --");
+ 			Carrier.redirect(request, response, "/member.do?action=move&page=main");
+ 			
+ 			//세션을 어떻게 끊지?
+ 			
+ 			System.out.println("-------controller 로그아웃 END------- ");
+ 			break;
  		case JOIN:
 			System.out.println("5. con  JOIN--");
 			Carrier.redirect(request, response,"");

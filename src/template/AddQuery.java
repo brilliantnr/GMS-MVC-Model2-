@@ -45,6 +45,9 @@ public class AddQuery extends QueryTemplate{
 		case "IMAGE":
 			try {
 				System.out.println("AddQuery IMAGE 진입");
+				System.out.println("map.get(\"imgname\") : "+map.get("imgname"));
+				System.out.println("map.get(\"ext\") : "+map.get("ext"));
+				System.out.println("map.get(\"userid\") : "+map.get("userid"));
 				pstmt.setString(1, (String) map.get("imgname"));
 				pstmt.setString(2, (String) map.get("ext"));
 				pstmt.setString(3, (String) map.get("userid"));

@@ -20,10 +20,10 @@ public class ModifyQuery extends QueryTemplate{
 	@Override
 	void startPlay() {
 		try {
-			pstmt = DatabaseFactory
+			/*pstmt = DatabaseFactory
 					.createDatabase2(map)
 					.getConnection()
-					.prepareStatement((String) map.get("sql"));
+					.prepareStatement((String) map.get("sql"));*/
 			pstmt.setString(1, map.get("column").toString());
 			pstmt.setString(2, map.get("id").toString());
 			

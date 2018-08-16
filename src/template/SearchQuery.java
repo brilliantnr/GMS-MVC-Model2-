@@ -1,8 +1,8 @@
 package template;
 
 import java.sql.ResultSet;
-import domain.MemberBean;
-import enums.MemberQuery;
+import domain.*;
+import enums.*;
 
 public class SearchQuery extends QueryTemplate{
 
@@ -48,19 +48,18 @@ public class SearchQuery extends QueryTemplate{
 	void endPlay() {
 		try {
 			ResultSet rs  = pstmt.executeQuery();//리턴타입 있을 경우 resultSet 사용(DB에서 꺼내오는 수도꼭지)
-			MemberBean mem = null;
 			while(rs.next()) {
-				mem= new MemberBean();
-				mem.setAge(rs.getString("AGE"));
-				mem.setName(rs.getString("NAME"));
-				mem.setPassword(rs.getString("PASSWORD"));
-				mem.setRoll(rs.getString("ROLL"));
-				mem.setSsn(rs.getString("SSN"));
-				mem.setUserid(rs.getString("USERID"));
-				mem.setTeamId(rs.getString("TEAMID"));
-				mem.setGender(rs.getString("GENDER"));
-				mem.setSubject(rs.getString("SUBJECT"));
-				list.add(mem);  //리턴타입 List
+				o= new MemberBean();
+				((MemberBean) o).setAge(rs.getString("AGE"));
+				((MemberBean) o).setName(rs.getString("NAME"));
+				((MemberBean) o).setPassword(rs.getString("PASSWORD"));
+				((MemberBean) o).setRoll(rs.getString("ROLL"));
+				((MemberBean) o).setSsn(rs.getString("SSN"));
+				((MemberBean) o).setUserid(rs.getString("USERID"));
+				((MemberBean) o).setTeamId(rs.getString("TEAMID"));
+				((MemberBean) o).setGender(rs.getString("GENDER"));
+				((MemberBean) o).setSubject(rs.getString("SUBJECT"));
+				list.add(((MemberBean) o));  //리턴타입 List
 			}
 		} catch (Exception e) {e.printStackTrace();}
 		

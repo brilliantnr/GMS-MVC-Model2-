@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="contentBox">
-	<div id="join-form">
-		<form id="join_form_form" name="joinForm">
+	<div id="join_div">
+		<form id="join_form" name="joinForm">
 		<h2>회원가입</h2>
 			ID 			<br><input type="text" name="userid" /><br /> 
 			이름 		<br><input type="text" name="name" /><br />
@@ -39,12 +39,12 @@
 			<br /> 
 		</form>
 	</div>
-</div>
+</div> <!-- content -->
 	<script>
 	
-//5단계)JSON 사용(OOP)
+
 	document.getElementById('join_form_btn').addEventListener('click',function(){
-		var form = document.getElementById('join_form_form');
+		var form = document.getElementById('join_form');
 		var x = service.nullChecker([ form.userid.value, form.name.value, form.ssn.value, form.password.value ]); //x에 json 담김
 		if(x.checker){  //j.checker가 true 일때 실행됨.
 			form.action = "${context}/member.do";  
@@ -73,7 +73,4 @@
 	});
 	//document.form.user_id.value 으로 document 이용하려면 form에 name 부여해야함.
 	
-	
 	</script>
-</body>
-</html>

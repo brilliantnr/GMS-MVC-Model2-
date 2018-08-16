@@ -1,12 +1,8 @@
 package command;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
-
 import domain.*;
-import service.MemberServiceImpl;
-
+import service.*;
 
 public class LoginCommand extends Command {
 	public LoginCommand(HttpServletRequest request) {  //커맨드 리퀘스트
@@ -21,18 +17,28 @@ public class LoginCommand extends Command {
 		System.out.println("LoginCommand  excute ");
 		request.setAttribute("pagename", request.getParameter("page"));
 		MemberBean member = new MemberBean();
-		member.setUserid(request.getParameter("user-id"));
-		member.setPassword(request.getParameter("user-password"));
+		member.setUserid(request.getParameter("id"));
+		member.setPassword(request.getParameter("password"));
 		if(MemberServiceImpl.getInstance().login(member)) {
 			request.setAttribute("match", "TRUE");
 			System.out.println("LoginCommand 로그인 성공");
+			
 			request.getSession().setAttribute(
 					"user"
 					, MemberServiceImpl.getInstance().retrieve(member.getUserid()));
-		}else {
-				request.setAttribute("match", "FALSE");
-				System.out.println("LoginCommand 로그인 실패");
-			}
+
+			ImageBean image = ImageServiceImpl.getinstance().retrieve(
+					((MemberBean) request.getSession().getAttribute("user")).getUserid());
+			String imgPath = 
+					(image == null) ?
+							"/home/empty.jpg" :
+								"/upload/"+image.getImgname() + "." + image.getExtension();
+			System.out.println("경로 : " + imgPath);
+			request.getSession().setAttribute("imgPath", imgPath);
+		} else {
+			request.setAttribute("match", "FALSE");
+			System.out.println("LoginCommand 로그인 실패");
+		}
 		super.excute();
 	}
 }

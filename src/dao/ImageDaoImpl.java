@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import domain.ImageBean;
 import enums.Domain;
@@ -17,6 +18,12 @@ public class ImageDaoImpl implements ImageDao{
 		System.out.println("ImageDaoImpl insert ---");
 		q= new AddQuery();
 		HashMap<String, Object> map = new HashMap<>();
+		//Iterator 패턴 ★★★
+		Iterator<?> keys = param.keySet().iterator();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			map.put(key, param.get(key));
+		}
 		map.put("table", Domain.IMAGE);
 		q.play(map);
 	}
@@ -29,7 +36,7 @@ public class ImageDaoImpl implements ImageDao{
 		map.put("table", Domain.IMAGE);
 		map.put("id", id);
 		q.play(map);
-		return (ImageBean) q.getO();  //쿼리문 작성해야함
+		return (ImageBean) q.getO();
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import service.*;
 public class SearchCommand extends Command {
 	List<MemberBean> list;
 	public SearchCommand(HttpServletRequest request) {
+		System.out.println("4.SearchCommand 진입");
 		setRequest(request);
 		setDomain(request.getServletPath().substring(1, request.getServletPath().indexOf(".")));
 		setAction(request.getParameter("action"));
@@ -17,13 +18,13 @@ public class SearchCommand extends Command {
 	
 	@Override
 	public void excute() {
+		System.out.println("4.SearchCommand excute");
 		Map<String, Object> paramMap = new HashMap<>();
 		String pageNum = request.getParameter("pageNum");
 		PageProxy pxy = new PageProxy();
 		int pn = (pageNum == null) ? 1 : Integer.parseInt(pageNum);
 		pxy.carryOut(pn);
-		
-		System.out.println("4.SearchCommand 진입");
+		System.out.println("4.SearchCommand PageProxy 완료");
 		
 		Pagination page = pxy.getPagination();
 		String[] arr1 = {"domain","beginRow","endRow"};
@@ -33,6 +34,7 @@ public class SearchCommand extends Command {
 				};
 		for(int i=0; i<arr1.length;i++) {
 			paramMap.put(arr1[i], arr2[i]);
+			System.out.println("Pagination for문 : "+paramMap.put(arr1[i], arr2[i]));
 		}
 		/*paramMap.put("beginRow", page.getBeginRow());
 		paramMap.put("endRow", page.getEndRow());*/
